@@ -8,6 +8,7 @@ import FAQ from './pages/FAQ/FAQ';
 import ParticipatePage from './pages/ParticipatePage/ParticipatePage';
 import ParticipateForm from './pages/ParticipateForm/ParticipateForm';
 import Workspace from './pages/Workspace/Workspace';
+import Streamer from './pages/Streamer/Streamer';
 
 Amplify.configure({
   Auth: {
@@ -29,6 +30,7 @@ function App() {
             <Route path="/participate" component={ParticipatePage} />
             <Route path="/form" component={ParticipateForm} />
             <Route path="/workspace" component={Workspace} />
+            <Route path="/streamer" component={Streamer} />
           </MainPage>
         </Switch>
       </BrowserRouter>

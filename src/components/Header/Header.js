@@ -11,7 +11,7 @@ import Auth from '@aws-amplify/auth';
 
 import './Header.scss';
 import Login from '../../pages/Login/Login';
-import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { setAuthData } from '../../redux/auth/auth.reducer';
 
 const Header = (props) => {
