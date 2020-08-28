@@ -1,0 +1,9 @@
+{
+	"auth": {
+		"infiniteplaya1a530ae3": {
+			"service": "Cognito",
+			"providerPlugin": "awscloudformation",
+			"dependsOn": []
+		}
+	}
+}

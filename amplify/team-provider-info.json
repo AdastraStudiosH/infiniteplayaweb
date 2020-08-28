@@ -1,0 +1,20 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-infiniteplaya-dev-100355-authRole",
+            "UnauthRoleArn": "arn:aws:iam::933567401879:role/amplify-infiniteplaya-dev-100355-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::933567401879:role/amplify-infiniteplaya-dev-100355-authRole",
+            "Region": "eu-central-1",
+            "DeploymentBucketName": "amplify-infiniteplaya-dev-100355-deployment",
+            "UnauthRoleName": "amplify-infiniteplaya-dev-100355-unauthRole",
+            "StackName": "amplify-infiniteplaya-dev-100355",
+            "StackId": "arn:aws:cloudformation:eu-central-1:933567401879:stack/amplify-infiniteplaya-dev-100355/7fbefaa0-e833-11ea-9238-0604799e0c2e",
+            "AmplifyAppId": "d1pheirqyapmyg"
+        },
+        "categories": {
+            "auth": {
+                "infiniteplaya1a530ae3": {}
+            }
+        }
+    }
+}

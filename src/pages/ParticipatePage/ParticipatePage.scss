@@ -1,0 +1,92 @@
+.participate-section {
+  background: url('../../images/first_back.png') no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+.participate-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+
+  h1 {
+    margin-top: 116px;
+    margin-bottom: 38px;
+    font-family: 'GoboldHeader', sans-serif;
+    text-shadow: rgba(255, 255, 255, 0.6) 1px 1px 1px, rgba(0, 0, 0, 0.6) -1px -1px 1px;
+    color: #fff;
+    font-size: 33px;
+  }
+
+  button {
+    width: 532px;
+    height: 68px;
+    margin-bottom: 22px;
+    color: #fff;
+    font-family: 'GoboldHeader', sans-serif;
+    font-size: 25px;
+    cursor: pointer;
+    transition: border-color 0.4s ease 0s, background-color 0.4s ease 0s;
+
+    &:hover {
+      background-color: rgba(255, 64, 64, 1);
+      border-color: rgba(255, 64, 64, 1);
+    }
+
+    a {
+      text-decoration: none;
+      height: 100%;
+    }
+  }
+
+  .participate {
+
+    &-camps {
+      background-color: rgba(183, 216, 199, 0.75);
+      border: solid rgba(254, 96, 96, 1) 0px;
+      cursor: pointer !important;
+    }
+
+    &-performers {
+      background-color: rgba(92, 101, 61, 0.75);
+      border: solid rgba(254, 96, 96, 1) 0px;
+    }
+
+    &-artists {
+      background-color: rgba(47, 46, 46, 0.7);
+      border: solid rgba(254, 96, 96, 1) 0px;
+    }
+
+    &-volunteers {
+      background-color: rgba(170, 129, 49, 0.75);
+      border: solid rgba(254, 96, 96, 1) 0px;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .participate-page {
+    a button {
+      margin-bottom: 10px;
+      width: 100vw;
+    }
+
+    h1 {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .participate-section {
+    background-size: cover;
+
+    .header {
+      background-color: rgba(35, 35, 35, 0.09);
+    }
+
+    .footer {
+        background-color: rgba(49, 47, 46, 0.57);
+    }
+  }
+}

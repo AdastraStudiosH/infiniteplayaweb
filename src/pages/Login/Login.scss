@@ -1,0 +1,96 @@
+.login-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 9;
+}
+
+.login {
+  position: fixed;
+  top: 140px;
+  left: 10vw;
+  width: 80vw;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2em 0;
+  z-index: 10;
+  max-height: calc(100vh - 280px);
+
+  h2 {
+    color: #fff;
+    font-weight: bold;
+    font-family: 'GoboldHeader', sans-serif;
+    font-size: 3em;
+    letter-spacing: 0.1em;
+    margin-top: 0;
+    margin-bottom: 0.4em;
+  }
+
+  input {
+    font-weight: bold;
+    color: #000;
+    height: 40px;
+    width: 300px;
+    padding: 0 1em;
+    font-size: 1em;
+    margin-bottom: 1em;
+
+    &::placeholder { 
+      color: #000;
+      font-size: 1.2em;
+    }
+  }
+
+  span {
+    font-weight: bold;
+    font-family: 'First', sans-serif;
+    font-size: 1.2em;
+    cursor: pointer;
+    margin-bottom: 2em;
+  }
+
+  .login-checkbox {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+
+    input {
+      width: 2em;
+      margin: 0;
+    }
+
+    span {
+      margin: 0;
+      margin-left: 1em;
+    }
+  }
+
+  .age-wrapper {
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .age-verification {
+    // position: fixed;
+    // left: calc(50% - 250px);
+    // top: calc(50% - 75px);
+    width: 500px;
+    height: 150px;
+
+    div {
+      margin-top: 2em;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}

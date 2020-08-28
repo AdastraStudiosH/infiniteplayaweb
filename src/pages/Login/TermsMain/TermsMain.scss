@@ -1,0 +1,28 @@
+.terms-main {
+  overflow-x: scroll;
+  padding: 0 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    width: 300px;
+  }
+
+  h3, p {
+    width: 100%;
+    text-align: left;
+  }
+
+  .login-checkbox {
+    width: 100%;
+  }
+
+  .agree-block {
+    display: flex;
+
+    input {
+      width: 2em;
+    }
+  }
+}

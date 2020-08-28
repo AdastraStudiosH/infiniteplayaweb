@@ -1,0 +1,78 @@
+.background {
+  height: 1140px;
+	background: url('../../images/first_back.png') no-repeat center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-size: cover;
+	background-color: #1c120c;
+	background-attachment:fixed;
+	position:relative;
+	overflow:hidden;
+}
+
+.main-buttons {
+	display: flex;
+	justify-content: center;
+	// background: url('../../images/first_back.png') no-repeat center;
+	// background-position: top 38% right;
+	width: 100%;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-size: cover;
+	padding: 2em 0;
+
+	button {
+		height: 50px;
+		border: 1px solid rgb(255, 198, 87);
+		margin-left: 10px;
+		background-color: rgb(32,30,26);
+		color: #fff;
+		font-family: 'First', sans-serif;
+		font-weight: bold;
+		padding: 0 1em;
+		cursor: pointer;
+		transition: background-color 0.4s ease;
+
+		a {
+			text-decoration: none;
+			color: #fff;
+		}
+
+		&:hover {
+			background-color: rgba(32,30,26, 0.8);
+		}
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+}
+
+.background-second {
+	background: url('../../images/hands.png') no-repeat center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+	background-size: cover;
+	background-color: #1c120c;
+	background-attachment:fixed;
+	position:relative;
+	overflow:hidden;
+}
+
+.fromVideoToGallery {
+	width: 100%;
+	height: 100vh;
+}
+
+@media only screen and (max-width: 500px) {
+	.background {
+		height: 600px;
+	}
+
+	.fromVideoToGallery {
+		height: 50vh;
+	}
+}
