@@ -57,3 +57,19 @@ button, input[type="checkbox"] {
 .non-clickable-button {
   background-color: gray;
 }
+
+.confirm-page {
+  background: url('./images/first_back.png') no-repeat center;
+  background-attachment: fixed;
+  background-size: cover;
+  
+  section {
+      min-height: calc(100vh - 256px);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'GoboldHeader',sans-serif;
+      font-size: 50px;
+  }
+}

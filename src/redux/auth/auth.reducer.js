@@ -5,7 +5,8 @@ export const authReducer = (state = authState, action) => {
     case 'set-auth-data': {
       return {
         ...state,
-        personal_data: action.nickname
+        personal_data: action.nickname,
+        token: action.token
       }
     }
 
@@ -22,11 +23,11 @@ export const authReducer = (state = authState, action) => {
   }
 }
 
-export const setAuthData = (nickname) => dispatch => {
+export const setAuthData = (nickname, token) => dispatch => {
   console.log('here');
   return dispatch({
     type: 'set-auth-data',
-    nickname
+    nickname, token
   })
 }
 

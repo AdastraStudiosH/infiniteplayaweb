@@ -1,18 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../images/logo.png';
 import { connect } from 'react-redux';
-import instagram from '../../images/instagram.png';
-import facebook from '../../images/facebook.png';
-import youtube from '../../images/youtube.png';
-import vimeo from '../../images/vimeo.png';
 import { Link } from 'react-router-dom';
 import { HashLink as HLink } from 'react-router-hash-link';
 import Auth from '@aws-amplify/auth';
+import Login from '../../pages/Login/Login';
+import { bindActionCreators } from 'redux';
+import { setAuthData } from '../../redux/auth/auth.reducer';
 
 import './Header.scss';
-import Login from '../../pages/Login/Login';
-import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux';
-import { setAuthData } from '../../redux/auth/auth.reducer';
 
 const Header = (props) => {
   const [isOpen, setOpen] = useState(false);

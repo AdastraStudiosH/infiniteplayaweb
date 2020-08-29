@@ -5,6 +5,8 @@ import './TermsMain.scss';
 const TermsMain = (props) => {
   const [isChecked, setChecked] = useState(false);
 
+  if (props.error) props.toggleSetStep(1);
+
   return (
     <div className="terms-main">
       <h2>THE INFINITE PLAYA CODE OF CONDUCT</h2>

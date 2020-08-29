@@ -1,10 +1,60 @@
-import React from 'react';
-
-import './Workspace.scss';
+import React, { useEffect, useState } from 'react';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import { loadStripe } from '@stripe/stripe-js';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { setUserData } from '../../redux/user/user.reducer';
 
-const Workspace = () => {
+import './Workspace.scss';
+
+const stripePromise = loadStripe('pk_test_51HKrjKLSQ0UOTq7wyj2q1aPiCPrduWT4Sl0TssfOo74QXZbT8DG70CP30dClrs6VbslMUTnre4qKJMhQNojf5dyW0054YpMU9s');
+
+const Workspace = (props) => {
+  const [isPaymentLoading, toggleLoadPayment] = useState(false);
+
+  console.log(props.token, props.user);
+
+  const fetchUserData = async () => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+
+    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
+      method: 'POST',
+      // headers: headers,
+      body: JSON.stringify({ 'AccessToken': localStorage.token })
+    }).then(res => res.json())
+    .then(data => props.setUserData(data))
+    .catch(err => console.log(err))
+  }
+
+
+  useEffect(() => {
+    fetchUserData();
+  }, [])
+
+  const paymentFunc = async (price) => {
+    const stripe = await stripePromise;
+
+    toggleLoadPayment(true);
+
+    const response = await fetch(
+      'https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/paymentCreateCheckoutSession', 
+      { 
+        method: 'POST', 
+        body: JSON.stringify({ 'price': price })
+      }).catch(() => toggleLoadPayment(false));
+
+    const session = await response.json();
+
+    const result = await stripe.redirectToCheckout({
+      sessionId: session.sessionId
+    })
+
+    console.log(result);
+  }
+
   return (
     <section className="workspace">
       <Header />
@@ -14,23 +64,23 @@ const Workspace = () => {
           <div className="account-info">
             <div>
               <span>First Name</span>
-              <span></span>
+              <span>{props.user && props.user.userAttributes.name}</span>
             </div>
             <div>
               <span>Last Name</span>
-              <span></span>
+              <span>{props.user && props.user.userAttributes.family_name}</span>
             </div>
             <div>
               <span>Email</span>
-              <span></span>
+              <span>{props.user && props.user.userAttributes.email}</span>
             </div>
             <div>
               <span>Username (Playa Name)</span>
-              <span></span>
+              <span>{props.user && props.user.userAttributes.nickname}</span>
             </div>
             <div>
               <span>Time</span>
-              <span></span>
+              <span>{props.user && props.user.playerData.PlayTime}</span>
             </div>
           </div>
         </div>
@@ -70,22 +120,22 @@ const Workspace = () => {
           <div>
             <h3>Visitor</h3>
             <span>Two Hour Pass - $20</span>
-            <button>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLE6GLSQ0UOTq7wcJIRFDXD')}>Buy</button>
           </div>
           <div>
             <h3>Weekend Warrior</h3>
             <span>Five Hour Pass - $40</span>
-            <button>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLE6iLSQ0UOTq7wVOsoU30M')}>Buy</button>
           </div>
           <div>
             <h3>Dusty Explorer</h3>
             <span>Ten Hour Pass - $75</span>
-            <button>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLE74LSQ0UOTq7wxHqkfNUZ')}>Buy</button>
           </div>
           <div>
             <h3>Founder's Package</h3>
             <span>24 Hour  Pass - $150 *includes executable</span>
-            <button>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLE7QLSQ0UOTq7w2uS5OOuy')}>Buy</button>
           </div>
         </div>
         <div className="donate">
@@ -97,8 +147,19 @@ const Workspace = () => {
         </div>
       </div>
       <Footer />
+      {isPaymentLoading && <div className="payment-loading">Loading</div>}
     </section>
   )
 }
 
-export default Workspace;
+const mapStateToProps = state => ({
+  token: state.auth.token,
+  user: state.user.user
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    setUserData
+  }, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Workspace);
