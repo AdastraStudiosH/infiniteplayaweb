@@ -32,7 +32,8 @@ const Login = (props) => {
         props.closeLogin();
         console.log(result, result.storage, result.username);
         localStorage.nickname = result.username;
-        props.setAuthData(result.username);
+        localStorage.token = result.signInUserSession.accessToken.jwtToken;
+        props.setAuthData(result.username, result.signInUserSession.accessToken.jwtToken);
       })
       .catch((e) => {
         props.setSignUpError(e.message)
@@ -43,10 +44,13 @@ const Login = (props) => {
     console.log(first_name, last_name, regUsername, email, password, repeatPassword);
     const result = await Auth.signUp({
       username: regUsername,
-      name: first_name,
-      last_name,
-      email,
       password,
+      attributes: {
+        name: first_name,
+        email: email,
+        family_name: last_name,
+        nickname: regUsername
+      },
     }).then(() => {
       toggleSetStep(6);
       signIn()
@@ -75,7 +79,9 @@ const Login = (props) => {
             <button onClick={() => signIn()}>Login</button>
           </React.Fragment>
         ) : step === 1 ? (
-          <SignUp 
+          <SignUp
+            error={props.error}
+            signUp={signUp}
             regUsername={regUsername}
             first_name={first_name}
             setFirstName={setFirstName}
@@ -104,7 +110,7 @@ const Login = (props) => {
           </React.Fragment>
         ) : step === 3 ? <WelcomeScreen toggleSetStep={toggleSetStep} />
           : step === 4 ? <Terms toggleSetStep={toggleSetStep} />
-          : step === 5 ? <TermsMain error={props.error} signUp={signUp}/>
+          : step === 5 ? <TermsMain toggleSetStep={toggleSetStep} error={props.error} signUp={signUp}/>
           : (
             <div>
               <h2>Registration is succesful</h2>

@@ -10,12 +10,15 @@ import ParticipateForm from './pages/ParticipateForm/ParticipateForm';
 import Workspace from './pages/Workspace/Workspace';
 import Streamer from './pages/Streamer/Streamer';
 import Unsupported from './pages/UnsupportedBrowser/Unsupported';
+import ConfirmPage from './pages/ConfirmPage/ConfirmPage';
+import FailedPage from './pages/FailedPage/FailedPage';
+import { connect } from 'react-redux';
 
 Amplify.configure({
   Auth: {
     region: "eu-central-1",
-    userPoolId: "eu-central-1_24bjUqAiR",
-    userPoolWebClientId: "7nemr5i7lh66a38oj6v89hu73k",
+    userPoolId: "eu-central-1_EJ972dajD",
+    userPoolWebClientId: "6b64mtqn4fjlq05coh8n4l70hj",
   },
 });
 
@@ -33,6 +36,8 @@ function App() {
             <Route path="/workspace" component={Workspace} />
             <Route path="/streamer" component={Streamer} />
             <Route path="/unsupported" component={Unsupported} />
+            <Route path="/payment_success" component={ConfirmPage} />
+            <Route path="/payment_failed" component={FailedPage} />
           </MainPage>
         </Switch>
       </BrowserRouter>
@@ -40,4 +45,8 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+
+}
+
+export default connect()(App);

@@ -8,6 +8,7 @@
     "@aws-amplify/ui-react": "^0.2.15",
     "@calgaryscientific/platform-sdk": "./lib/calgaryscientific-platform-sdk-v1.4.6.tgz",
     "@calgaryscientific/platform-sdk-react": "./lib/calgaryscientific-platform-sdk-react-v1.4.6.tgz",
+    "@stripe/stripe-js": "^1.9.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",

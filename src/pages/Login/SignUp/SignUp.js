@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const SignUp = (props) => {
   const [isErrors, showErrors] = useState(false);
 
-  const { last_name, setLastName, toggleSetStep, first_name, setFirstName, setEmail, email, regUsername, setRegUsername, repeatPassword, setRepeatPassword, password, setPassword } = props;
+  const { signUp, error, last_name, setLastName, toggleSetStep, first_name, setFirstName, setEmail, email, regUsername, setRegUsername, repeatPassword, setRepeatPassword, password, setPassword } = props;
 
   const validateFields = () => {
     let reg = /^[\S]+.*[\S]+$/;
@@ -66,8 +66,11 @@ const SignUp = (props) => {
           <input type="checkbox" />
           <span>Opt in to share your information with Burning Man.</span>
         </div>
+        {error && <div className="errors">{error}</div>}
         {isErrors && <div className="errors">Need to fill all the fields</div>}
-        <button onClick={() => validateFields() && toggleSetStep(2)}>Sign Up</button>
+        <button onClick={() => {
+          error ? signUp() : validateFields() && toggleSetStep(2)
+        }}>Sign Up</button>
       </React.Fragment>
     )
 }
