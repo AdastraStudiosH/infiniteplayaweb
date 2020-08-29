@@ -6,6 +6,7 @@ const WelcomeScreen = (props) => {
   const [isChecked, setChecked] = useState(false);
   return (
     <section className="welcome">
+      <h2>Welcome to Infinite Playa!</h2>
       <span>Welcome intrepid explorer to The Infinite Playa, a recognized universe of the Burning Man Multiverse.
 The Infinite Playa is an Unsupported Beta Experience. Should you choose to contribute by purchasing a ticket for this interactive experience, you will become a test pilot and pioneer, exploring and supporting the world’s first fully interactive, virtual arts festival. 
 Your participation, feedback and engagement will fuel the future of this collaborative experience.

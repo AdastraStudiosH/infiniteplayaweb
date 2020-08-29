@@ -94,3 +94,32 @@
     }
   }
 }
+
+@media only screen and (max-width: 500px) {
+  .login {
+    width: calc(100vw - 2em);
+    left: 0;
+    top: 0;
+    padding: 2em 1em;
+    max-height: calc(100vh - 82px);
+
+    .login-cross {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      width: 20px;
+      height: 20px;
+      background-color: #fff;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .age-verification {
+      width: 100%;
+    }
+
+    .welcome {
+      overflow-y: scroll;
+    }
+  }
+}

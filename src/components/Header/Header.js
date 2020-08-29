@@ -49,10 +49,10 @@ const Header = (props) => {
       {!props.data || localStorage.nickname === 'undefined' || !localStorage.nickname
         ? <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
         : (
-          <React.Fragment>
+          <div className="header-authorized">
             <Link to="/workspace"><button>{localStorage.nickname}</button> </Link>
             <button onClick={() => signOut()} style={{ marginLeft: '20px', width: '50px', padding: '0.2em 1em' }}>X</button>
-          </React.Fragment>
+          </div>
         )
       }
       {isLoginOpen && <Login closeLogin={() => toggleLoginOpener(false)} />}
