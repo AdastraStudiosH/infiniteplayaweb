@@ -9,6 +9,10 @@
   justify-content: space-between;
   padding: 0 2em;
 
+  &-authorized {
+    display: flex;
+  }
+
   button {
     font-size: 2em;
     border: none;
@@ -27,6 +31,10 @@
 .logo {
   cursor: pointer;
   margin-left: 1em;
+
+  img {
+    width: 100%;
+  }
 }
 
 .links {
