@@ -26,6 +26,7 @@ const LoadingView = (props) => {
             </g>
           </svg>
           <h3>Please wait, your session is loading.</h3>
+          <h3>{props.LaunchRequestStatus.status}</h3>
         </div>
       );
     }
