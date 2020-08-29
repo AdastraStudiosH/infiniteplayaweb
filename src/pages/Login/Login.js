@@ -7,6 +7,7 @@ import SignUp from './SignUp/SignUp';
 import WelcomeScreen from './WelcomeScreen/WelcomeScreen';
 import Terms from './Terms/Terms';
 import TermsMain from './TermsMain/TermsMain';
+import cross from '../../images/cross.svg';
 
 import './Login.scss';
 
@@ -33,6 +34,7 @@ const Login = (props) => {
         console.log(result, result.storage, result.username);
         localStorage.nickname = result.username;
         localStorage.token = result.signInUserSession.accessToken.jwtToken;
+        props.setSignUpError(undefined);
         props.setAuthData(result.username, result.signInUserSession.accessToken.jwtToken);
       })
       .catch((e) => {
@@ -53,7 +55,8 @@ const Login = (props) => {
       },
     }).then(() => {
       toggleSetStep(6);
-      signIn()
+      props.setSignUpError(undefined);
+      signIn();
     }).catch(e => props.setSignUpError(e.message))
     console.log(result)
     return result;
@@ -63,6 +66,7 @@ const Login = (props) => {
     <React.Fragment>
       <div className="login-wrapper" onClick={props.closeLogin}></div>
       <section className="login">
+        {window.innerWidth < 500 && <div onClick={() => props.closeLogin()} className="login-cross">X</div>}
         {step === 0 ? (
           <React.Fragment>
             <h2>Login</h2>

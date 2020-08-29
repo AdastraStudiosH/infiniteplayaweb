@@ -43,7 +43,10 @@ const Workspace = (props) => {
       'https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/paymentCreateCheckoutSession', 
       { 
         method: 'POST', 
-        body: JSON.stringify({ 'price': price })
+        body: JSON.stringify({ 
+          'AccessToken': localStorage.token, 
+          'price': price 
+        })
       }).catch(() => toggleLoadPayment(false));
 
     const session = await response.json();
