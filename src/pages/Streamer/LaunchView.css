@@ -8,3 +8,9 @@
 #launchContainer > div {
   text-align: center;
 }
+
+img {
+  width:250px;
+  object-fit: contain;
+
+}

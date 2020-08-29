@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
 import './Workspace.scss';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
@@ -35,7 +35,7 @@ const Workspace = () => {
           </div>
         </div>
         <div className="workspace-button">
-          <button>Start remote game session</button>
+          <Link to="/streamer"><button>Start a streaming experience</button> </Link>
           <button>Download Game client</button>
         </div>
         <h2 className="workspace-title">Purchases</h2>

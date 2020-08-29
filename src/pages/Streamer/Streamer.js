@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import {Redirect} from 'react-router-dom';
+import useAsyncEffect from "use-async-effect";
 import {PlatformNext, LaunchStatusType, WebSocketSignalling} from '@calgaryscientific/platform-sdk';
-import {  useStreamer, DefaultStreamerOptions } from '@calgaryscientific/platform-sdk-react';
+import {useStreamer, DefaultStreamerOptions, System } from '@calgaryscientific/platform-sdk-react';
+
 import LaunchView from './LaunchView';
 import MainView from './MainView';
-import useAsyncEffect from "use-async-effect";
+
 import './Streamer.scss';
 
 // Initialize platform reference
@@ -45,7 +48,7 @@ const Streamer = () => {
         await platform.useAnonymousCredentials("4116aa26-1e9b-40f4-8131-0e9f2d0d2686");
         let models = await platform.getModels();
         setModelDefinition(models[0]);
-    });
+    }, []);
 
     // Monitor Launch Request Status
     useEffect(() => {
@@ -86,6 +89,14 @@ const Streamer = () => {
     if (audioStream) 
         audio.srcObject = audioStream;
 
+
+    // Render / redirect unsupported
+    if (!System.IsBrowserSupported())
+    {
+      return <Redirect to="/unsupported"/>
+    }
+
+    // Render
     const view = loading ? 
     <MainView
     VideoStream={videoStream}
