@@ -9,7 +9,7 @@
   text-align: center;
 }
 
-img {
+#launchContainer img {
   width:250px;
   object-fit: contain;
 
