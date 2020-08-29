@@ -13,10 +13,15 @@
     font-size: 2em;
     border: none;
     font-family: 'GoboldHeader', sans-serif;
-    padding: 0.2em 2.5em;
+    padding: 0.2em 1em;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
   }
   
+  a {
+    text-decoration: none;
+  }
 }
 
 .logo {
