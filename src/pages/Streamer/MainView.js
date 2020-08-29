@@ -7,8 +7,7 @@ import LoadingView from './Loading/LoadingView'
 const MainView = (props) => {
   
     return (
-      <div style={{ height: "100%" }}>
-          <h1> MainView </h1>
+      <div style={{ height: "100%" }}>          
           <IdleTimeout
             Status={props.StreamerStatus}
             WarningThreshold={300}

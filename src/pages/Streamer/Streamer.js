@@ -4,7 +4,7 @@ import {  useStreamer, DefaultStreamerOptions } from '@calgaryscientific/platfor
 import LaunchView from './LaunchView';
 import MainView from './MainView';
 import useAsyncEffect from "use-async-effect";
-
+import './Streamer.scss';
 
 // Initialize platform reference
 const platform = new PlatformNext();
@@ -32,7 +32,9 @@ const Streamer = () => {
     // Cancel launch requests on navigating away
     useEffect(() => {
         window.addEventListener('beforeunload', async () => {
+            if (launchRequest == null) return;
             if (launchRequest.status.getValue() !== LaunchStatusType.Serviced) {
+                console.log("Cancelling pending launch request.");
                 await launchRequest.cancel();
             }
         });
