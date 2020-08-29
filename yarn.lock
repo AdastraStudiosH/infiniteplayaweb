@@ -2701,9 +2701,9 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@calgaryscientific/platform-sdk-react@./lib/calgaryscientific-platform-sdk-react-v1.4.6.tgz":
-  version "1.4.6"
-  resolved "./lib/calgaryscientific-platform-sdk-react-v1.4.6.tgz#8fb9c265afabce9c2e9ff81bfd2ca0407b6a9e02"
+"@calgaryscientific/platform-sdk-react@./lib/calgaryscientific-platform-sdk-react-v1.4.7.tgz":
+  version "1.4.7"
+  resolved "./lib/calgaryscientific-platform-sdk-react-v1.4.7.tgz#7b7004d94042870552b01be02f8232e08f79603f"
   dependencies:
     "@juggle/resize-observer" "^3.1.3"
     detect-browser "^5.1.0"
@@ -2711,9 +2711,9 @@
     react-idle-timer "^4.3.4"
     react-modal "^3.11.2"
 
-"@calgaryscientific/platform-sdk@./lib/calgaryscientific-platform-sdk-v1.4.6.tgz":
-  version "1.4.6"
-  resolved "./lib/calgaryscientific-platform-sdk-v1.4.6.tgz#90dbf5b43a385b94afdd45969574db4d523aa947"
+"@calgaryscientific/platform-sdk@./lib/calgaryscientific-platform-sdk-v1.4.7.tgz":
+  version "1.4.7"
+  resolved "./lib/calgaryscientific-platform-sdk-v1.4.7.tgz#cdc60c0a1e7ca6c5df54ad2819cb8973cfd8df7e"
   dependencies:
     "@datadog/browser-logs" "^1.12.3"
     "@types/aws-iot-device-sdk" "^2.2.1"
