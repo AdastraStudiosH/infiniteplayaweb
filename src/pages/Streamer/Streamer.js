@@ -24,7 +24,7 @@ const Streamer = () => {
     const [modelDefinition, setModelDefinition] = useState(null);
     const [launchRequest, setLaunchRequest] = useState(null);
     const [signallingConnection, setSignallingConnection] = useState(null);
-    const [status, setStatus] = useState(null);
+    const [status, setStatus] = useState({ status: LaunchStatusType.Unknown, message: "Not started" });
 
     const [loading, setLoading] = useState(false);    
     const [streamerStatus, emitter, videoStream, audioStream, messageSubject] = useStreamer(signallingConnection, streamerOptions);
