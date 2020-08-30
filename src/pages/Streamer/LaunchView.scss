@@ -1,0 +1,30 @@
+#launchContainer {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: url('../../images/first_back.png') no-repeat center;
+  background-size: 100%;
+
+}
+
+#launchContainer button {
+  margin-bottom: 20px;
+  width: 500px;
+  background-color: #000;
+  padding: 0.5em 0;
+  border: none;
+  color: #fff;
+  font-family: 'GoboldHeader', sans-serif;
+  font-size: 30px;
+
+}
+
+#launchContainer .player {
+  padding:20px;
+}
+#launchContainer img {
+  width:250px;
+  object-fit: contain;
+}

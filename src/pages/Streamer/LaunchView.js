@@ -1,9 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useMemo} from "react";
+import ReactPlayer from 'react-player';
 import {isMobile} from 'react-device-detect';
 import rotate from '../../images/mobile-rotate.svg';
-import "./LaunchView.css";
+import "./LaunchView.scss";
+
+const greeterVideos = ['https://youtu.be/M--OsMIduBo', 
+                           'https://youtu.be/HGqP4rl5Z6A',
+                           'https://youtu.be/-BJ-T1SULpo',
+                           'https://youtu.be/KaYaujUGHXc',
+                           'https://youtu.be/WCmngYiL2iM']
+
+const video = greeterVideos[greeterVideos.length * Math.random() | 0];
 
 const LaunchView = (props) => {
+
+  
+  
 
   const [dimensions, setDimensions] = useState({ 
     height: window.innerHeight,
@@ -31,11 +43,20 @@ const LaunchView = (props) => {
   return (
     <div id="launchContainer">
       <div>
-        <h1>Infinite Playa</h1>
+        <h1>Welcome to The Infinite Playa</h1>
+          <div className="player">
+          <ReactPlayer 
+            url={video}
+            config={{
+              youtube: {
+                playerVars: { modestbranding: 1, playsinline: 1 }
+              }
+            }}
+          />
+          </div>
+          <button color="blue" onClick={() => props.Launch()}>Begin</button>
           {rotateMessage}
-          <button color="blue" onClick={() => props.Launch()}>Play(a)</button>
-          
-      </div>
+        </div>
     </div>
   );
 };

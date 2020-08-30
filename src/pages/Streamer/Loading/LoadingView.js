@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import { StreamerStatus } from "@calgaryscientific/platform-sdk-react";
 import { LaunchStatusType } from "@calgaryscientific/platform-sdk";
-import YouTube from 'react-youtube';
 
 import './LoadingView.scss';
 
@@ -9,15 +8,7 @@ const LoadingView = (props) => {
 
     const [isHidden, setIsHidden] = useState(false);
 
-    // const greeterVideos = ['M--OsMIduBo', 
-    //                        'HGqP4rl5Z6A',
-    //                        '-BJ-T1SULpo',
-    //                        'KaYaujUGHXc',
-    //                        'WCmngYiL2iM']
-
-    // const video = useMemo(() => {
-    //   return greeterVideos[greeterVideos.length * Math.random() | 0]
-    // });
+   
 
     if (isHidden) return <div/>;
     
@@ -36,18 +27,16 @@ const LoadingView = (props) => {
     } else {
       content = (
         <div className="loadingView" >
-          <div className="video-background">
-            <div className="video-foreground">
-              <iframe title="Greeter" src="https://www.youtube.com/embed/M--OsMIduBo?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1" allow='autoplay; encrypted-media' frameBorder="0" allowFullScreen></iframe>
-            </div>
+          <div className="mapViewer">
+            <iframe src="https://3ngage.se/burningman/" title="BurningMan" width="100%" height="100%"/>
           </div>
 
           <div id="vidtop-content">
             <div className="vid-info">
-              <h1>Please wait, your streaming experience is loading.</h1>
+              <h1>Get ready to join the Playa. Your experience is loading.</h1>
               <h3>Queue status: {props.LaunchRequestStatus.status}</h3>
               { 
-                props.StreamerStatus === StreamerStatus.Streaming ?? <button onClick={() => {setIsHidden(true)}}>Ready</button>
+                props.LaunchRequestStatus.status === LaunchStatusType.Ready ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
               }
             </div>
           </div>

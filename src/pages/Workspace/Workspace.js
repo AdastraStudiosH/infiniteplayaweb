@@ -10,7 +10,7 @@ import { setUserData } from '../../redux/user/user.reducer';
 
 import './Workspace.scss';
 
-const stripePromise = loadStripe('pk_test_51HHEqjHyf8bGDaR7pPXA91oZyD9lsfPbNXuCrRTworHxS9NHJxGQCIjD5IunMH6arL2eUQmyWUr36FOVb3XkP4Kl007kprg7X6');
+const stripePromise = loadStripe('pk_live_51HHEqjHyf8bGDaR7P9FvP0WZYtp2eHoeal1L2xl7zVBa8xdrUez5dVerblY6TDBo9KrrhB38SOWdUiYg6VDJk7FI00vifO1mIZ');
 
 const Workspace = (props) => {
   const [isPaymentLoading, toggleLoadPayment] = useState(false);
@@ -52,6 +52,7 @@ const Workspace = (props) => {
       }).catch(() => toggleLoadPayment(false));
 
     const session = await response.json();
+    console.log(session);
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId
@@ -123,9 +124,14 @@ const Workspace = (props) => {
         <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
         <div className="purchases">
           <div>
+            <h3>Free (Development, $0.5)</h3>
+            <span>Free</span>
+            <button onClick={() => paymentFunc('price_1HLgFRHyf8bGDaR74oeBc1m2')}>Buy</button>
+          </div>
+          <div>
             <h3>Visitor</h3>
             <span>Two Hour Pass - $20</span>
-            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLfpUHyf8bGDaR7VcuqATLR')}>Buy</button>
           </div>
           <div>
             <h3>Weekend Warrior</h3>

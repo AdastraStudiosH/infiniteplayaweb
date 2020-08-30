@@ -45,6 +45,7 @@ const Streamer = () => {
 
     // Fetch project definition
     useAsyncEffect(async () => {
+        //await platform.useAnonymousCredentials("e42dc69a-115e-49b0-bd0c-ce95d700c76b");
         await platform.useAnonymousCredentials("4116aa26-1e9b-40f4-8131-0e9f2d0d2686");
         let models = await platform.getModels();
         setModelDefinition(models[0]);
