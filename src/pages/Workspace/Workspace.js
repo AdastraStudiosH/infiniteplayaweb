@@ -32,6 +32,7 @@ const Workspace = (props) => {
 
   useEffect(() => {
     fetchUserData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const paymentFunc = async (price) => {
@@ -55,7 +56,7 @@ const Workspace = (props) => {
       sessionId: session.sessionId
     })
   }
-
+  let playTimeRemaining = props.user && props.user.playerData.PlayTime > 0;
   return (
     <section className="workspace">
       <Header />
@@ -85,10 +86,21 @@ const Workspace = (props) => {
             </div>
           </div>
         </div>
-        <div className="workspace-button">
-          <Link to="/streamer"><button>Start a streaming experience</button> </Link>
-          <button>Download Game client</button>
-        </div>
+        {
+            playTimeRemaining && (
+               <div className="workspace-button">
+                <Link to="/streamer"><button>Start a streaming experience</button> </Link>
+                <button>Download Game client</button>
+                </div>
+            )
+}{
+            !playTimeRemaining && (
+              <div className="workspace-button">
+               <a href="/workspace#purchase"><button>Purchase Time to begin playing</button> </a>
+               </div>
+           )
+        }
+
         <h2 className="workspace-title">Purchases</h2>
         <div className="workspace-block">
           <h2>Downloadable Game:</h2>
@@ -117,7 +129,7 @@ const Workspace = (props) => {
           </div>
         </div> */}
         <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
-        <div className="purchases">
+        <div id="purchase" className="purchases">
           <div>
             <h3>Free (Development, $0.5)</h3>
             <span>Free</span>
