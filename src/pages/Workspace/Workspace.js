@@ -57,6 +57,7 @@ const Workspace = (props) => {
     })
   }
   let playTimeRemaining = props.user && props.user.playerData.PlayTime > 0;
+  
   return (
     <section className="workspace">
       <Header />
