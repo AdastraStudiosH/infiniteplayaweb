@@ -4,21 +4,41 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { HashLink as HLink } from 'react-router-hash-link';
 import Auth from '@aws-amplify/auth';
+import { Hub } from '@aws-amplify/core';
 import Login from '../../pages/Login/Login';
 import { bindActionCreators } from 'redux';
 import { setAuthData } from '../../redux/auth/auth.reducer';
 
-import './Header.scss';
+import "./Header.scss";
 
 const Header = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [isLoginOpen, toggleLoginOpener] = useState(false);
 
+  useEffect(() => {
+    Hub.listen("auth", async ({ payload: { event, data } }) => {
+      switch (event) {
+        case "signIn": {
+          const user = await Auth.currentAuthenticatedUser();
+          const nickname = user.signInUserSession.idToken.payload.nickname;
+          const token = user.signInUserSession.accessToken.jwtToken;
+          localStorage.nickname = nickname;
+          localStorage.token = token;
+          props.setAuthData(nickname, token);
+          break;
+        }
+        default: {
+          break;
+        }
+      }
+    });
+  }, []);
+
   const signOut = async () => {
-    await Auth.signOut().then(() => {
-      props.setAuthData(undefined);
-      localStorage.nickname = undefined;
-    }).catch(err => console.log(err));
+    props.setAuthData(undefined);
+    localStorage.nickname = undefined;
+    localStorage.token = undefined;
+    await Auth.signOut();
   }
 
   return (

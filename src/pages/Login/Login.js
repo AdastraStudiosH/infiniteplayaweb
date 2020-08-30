@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Auth from '@aws-amplify/auth';
+import {Hub} from '@aws-amplify/core';
 import { connect } from 'react-redux';
 import { setAuthData, setSignUpError } from '../../redux/auth/auth.reducer';
 import { bindActionCreators } from 'redux';
@@ -81,6 +82,9 @@ const Login = (props) => {
             <span onClick={() => toggleSetStep(1)}>Or create new account</span>
             {props.error && <div className="errors">{props.error}</div>}
             <button onClick={() => signIn()}>Login</button>
+            <span>Or sign in using</span>
+            <button onClick={() => Auth.federatedSignIn({provider: 'Facebook'})}>Facebook</button>
+            <button onClick={() => Auth.federatedSignIn({provider: 'Google'})}>Google</button>
           </React.Fragment>
         ) : step === 1 ? (
           <SignUp

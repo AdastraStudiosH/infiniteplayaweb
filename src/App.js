@@ -19,6 +19,12 @@ Amplify.configure({
     region: "eu-central-1",
     userPoolId: "eu-central-1_EJ972dajD",
     userPoolWebClientId: "6b64mtqn4fjlq05coh8n4l70hj",
+    oauth: {
+      domain: 'infintyplaya.auth.eu-central-1.amazoncognito.com',
+      redirectSignIn: window.location.origin,
+      redirectSignOut: window.location.origin,
+      responseType: 'code'
+    }
   },
 });
 
