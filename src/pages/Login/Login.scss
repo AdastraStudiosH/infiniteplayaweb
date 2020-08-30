@@ -95,6 +95,43 @@
   }
 }
 
+.oauth {
+  display: flex;
+}
+
+.oauth > button {
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.oauth > button.facebook,
+.oauth > button.google {
+  font-size: 1em;
+  font-weight: 900;
+  font-family: 'Helvetica Neue';
+  width: 200px;
+}
+
+.oauth > button.facebook {
+  background-color: #3a5ba9;
+  color: #fff;
+}
+
+.oauth > button.google {
+  background-color: #fff;
+  color: #6b6b6b;
+}
+
+.oauth > button.facebook > img,
+.oauth > button.google > img {
+  height: 20px;
+  margin-right: 10px;
+}
+
 @media only screen and (max-width: 500px) {
   .login {
     width: 100vw;

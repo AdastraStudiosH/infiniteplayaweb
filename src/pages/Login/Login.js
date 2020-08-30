@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import Auth from '@aws-amplify/auth';
+import React, { useEffect, useState } from 'react';
+import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
+import {Hub} from '@aws-amplify/core';
 import { connect } from 'react-redux';
 import { setAuthData, setSignUpError } from '../../redux/auth/auth.reducer';
 import { bindActionCreators } from 'redux';
@@ -8,6 +9,8 @@ import WelcomeScreen from './WelcomeScreen/WelcomeScreen';
 import Terms from './Terms/Terms';
 import TermsMain from './TermsMain/TermsMain';
 import cross from '../../images/cross.svg';
+import facebookLogo from '../../images/facebook.png';
+import googleLogo from '../../images/google.png';
 
 import './Login.scss';
 
@@ -81,6 +84,26 @@ const Login = (props) => {
             <span onClick={() => toggleSetStep(1)}>Or create new account</span>
             {props.error && <div className="errors">{props.error}</div>}
             <button onClick={() => signIn()}>Login</button>
+            <h3>Or sign in with</h3>
+            <div className="oauth">
+              <button
+                className="facebook"
+                onClick={
+                  () => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Facebook })
+                }
+              >
+                <img src={facebookLogo} alt="" />
+                Facebook
+              </button>
+              <button className="google"
+                onClick={
+                  () => Auth.federatedSignIn({ provider: CognitoHostedUIIdentityProvider.Google })
+                }
+              >
+                <img src={googleLogo} alt="" />
+                Google
+              </button>
+            </div>
           </React.Fragment>
         ) : step === 1 ? (
           <SignUp
