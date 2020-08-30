@@ -10,7 +10,7 @@ import { setUserData } from '../../redux/user/user.reducer';
 
 import './Workspace.scss';
 
-const stripePromise = loadStripe('pk_test_51HKrjKLSQ0UOTq7wyj2q1aPiCPrduWT4Sl0TssfOo74QXZbT8DG70CP30dClrs6VbslMUTnre4qKJMhQNojf5dyW0054YpMU9s');
+const stripePromise = loadStripe('pk_test_51HHEqjHyf8bGDaR7pPXA91oZyD9lsfPbNXuCrRTworHxS9NHJxGQCIjD5IunMH6arL2eUQmyWUr36FOVb3XkP4Kl007kprg7X6');
 
 const Workspace = (props) => {
   const [isPaymentLoading, toggleLoadPayment] = useState(false);
@@ -125,22 +125,22 @@ const Workspace = (props) => {
           <div>
             <h3>Visitor</h3>
             <span>Two Hour Pass - $20</span>
-            <button onClick={() => paymentFunc('price_1HLE6GLSQ0UOTq7wcJIRFDXD')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Buy</button>
           </div>
           <div>
             <h3>Weekend Warrior</h3>
             <span>Five Hour Pass - $40</span>
-            <button onClick={() => paymentFunc('price_1HLE6iLSQ0UOTq7wVOsoU30M')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLcEeHyf8bGDaR7iRgrcipv')}>Buy</button>
           </div>
           <div>
             <h3>Dusty Explorer</h3>
             <span>Ten Hour Pass - $75</span>
-            <button onClick={() => paymentFunc('price_1HLE74LSQ0UOTq7wxHqkfNUZ')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Buy</button>
           </div>
           <div>
             <h3>Founder's Package</h3>
             <span>24 Hour  Pass - $150 *includes executable</span>
-            <button onClick={() => paymentFunc('price_1HLE7QLSQ0UOTq7w2uS5OOuy')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Buy</button>
           </div>
         </div>
         <div className="donate">
