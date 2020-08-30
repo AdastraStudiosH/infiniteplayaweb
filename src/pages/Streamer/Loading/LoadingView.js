@@ -36,7 +36,7 @@ const LoadingView = (props) => {
               <h1>Get ready to join the Playa. Your experience is loading.</h1>
               <h3>Queue status: {props.LaunchRequestStatus.status}</h3>
               { 
-                props.LaunchRequestStatus.status === LaunchStatusType.Ready ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
+                props.LaunchRequestStatus.status === LaunchStatusType.Serviced ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
               }
             </div>
           </div>
