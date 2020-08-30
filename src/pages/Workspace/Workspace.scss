@@ -167,6 +167,7 @@
       .account {
         align-items: center;
         &-info {
+          padding: 0;
           grid-template-columns: repeat(1, 100%);
           width: 100%;
 
