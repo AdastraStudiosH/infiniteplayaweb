@@ -144,20 +144,26 @@ const Login = (props) => {
             <div className="age-verification">
               <span>Is your Age under 13 years?</span>
               <div>
-                <button onClick={() => toggleSetStep(3)}>Yes</button>
-                <button onClick={() => toggleSetStep(1)}>No</button>
+                <button onClick={() => toggleSetStep(1)} error={props.setSignUpError("You must be over 13 years old to participate in the InfinitePlaya.")}>Yes</button>
+                <button onClick={() => toggleSetStep(3)}>No</button>
               </div>
             </div>
           </React.Fragment>
         ) : step === 3 ? <WelcomeScreen toggleSetStep={toggleSetStep} />
           : step === 4 ? <Terms toggleSetStep={toggleSetStep} />
           : step === 5 ? <TermsMain toggleSetStep={toggleSetStep} error={props.error} signUp={signUp}/>
-          : (
-            <div>
-              <h2>Registration is succesful</h2>
-              <p>To finish the Registration, please, confirm your email</p>
-            </div>
-          ) 
+          : step === 6 ?
+            (
+            <React.Fragment>
+              <div>
+                <h2>Registration is succesful</h2>
+                <p>To finish the Registration, please, confirm your email</p>
+              </div>
+            </React.Fragment> 
+          ) :  ( <div>
+            <h2>WHAT HAVE YOU DONE?</h2>
+            <p>Look at the horrors you have wrought with your choices!</p>
+          </div>)         
       }
       </section>
     </React.Fragment>
