@@ -97,6 +97,7 @@
 
 .oauth {
   display: flex;
+  flex-direction: column;
 }
 
 .oauth > button {
@@ -134,11 +135,22 @@
 
 @media only screen and (max-width: 500px) {
   .login {
-    width: 100vw;
+    width: calc(100vw - 2em);
     left: 0;
     top: 0;
     padding: 2em 1em;
     max-height: calc(100vh - 82px);
+
+    button {
+      width: 200px;
+      height: 40px;
+      color: #fff;
+      background-color: #000;
+      border: 1px solid #fff !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
     .login-cross {
       position: absolute;

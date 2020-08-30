@@ -61,6 +61,8 @@ const Workspace = (props) => {
     console.log(result);
   }
 
+  console.log(props.user);
+
   return (
     <section className="workspace">
       <Header />

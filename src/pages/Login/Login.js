@@ -23,11 +23,13 @@ const Login = (props) => {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [isRequesting, toggleSetRequest] = useState(false);
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
 
   const signIn = () => {
+    toggleSetRequest(true);
     Auth.signIn({
       username,
       password: loginPassword
@@ -35,6 +37,7 @@ const Login = (props) => {
       .then((result) => {
         props.closeLogin();
         console.log(result, result.storage, result.username);
+        toggleSetRequest(false);
         localStorage.nickname = result.username;
         localStorage.token = result.signInUserSession.accessToken.jwtToken;
         props.setSignUpError(undefined);
@@ -83,7 +86,7 @@ const Login = (props) => {
             />
             <span onClick={() => toggleSetStep(1)}>Or create new account</span>
             {props.error && <div className="errors">{props.error}</div>}
-            <button onClick={() => signIn()}>Login</button>
+            <button onClick={() => signIn()}>{isRequesting ? 'Requesting' : 'Login'}</button>
             <h3>Or sign in with</h3>
             <div className="oauth">
               <button

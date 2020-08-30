@@ -13,6 +13,8 @@ import Unsupported from './pages/UnsupportedBrowser/Unsupported';
 import ConfirmPage from './pages/ConfirmPage/ConfirmPage';
 import FailedPage from './pages/FailedPage/FailedPage';
 import { connect } from 'react-redux';
+import { setUserData } from './redux/user/user.reducer';
+import { bindActionCreators } from 'redux';
 
 Amplify.configure({
   Auth: {
@@ -28,7 +30,25 @@ Amplify.configure({
   },
 });
 
-function App() {
+const App = (props) => {
+
+  const fetchUserData = async () => {
+
+    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
+      method: 'POST',
+      body: JSON.stringify({ 'AccessToken': localStorage.token })
+    }).then(res => res.json())
+    .then(data => props.setUserData(data))
+    .catch(err => console.log(err))
+  }
+
+
+  useEffect(() => {
+    console.log('here')
+    fetchUserData();
+  }, [JSON.stringify(props.user), localStorage.token])
+
+  console.log(localStorage.token)
 
   return (
     <div className="App">
@@ -51,8 +71,13 @@ function App() {
   );
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = state => ({
+  user: state.user.user
+});
 
-}
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({
+    setUserData
+  }, dispatch)
 
-export default connect()(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

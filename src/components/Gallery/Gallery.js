@@ -52,7 +52,7 @@ const Gallery = () => {
       <div className="gallery-photos">
         {window.innerWidth > 500 && images.map((image, index) => {
           return (
-            <div className={`gallery-item ${image.className}`} onClick={() => toggleImagePress(index)}>
+            <div key={index} className={`gallery-item ${image.className}`} onClick={() => toggleImagePress(index)}>
               <img src={image.original} alt="image" />
             </div>
           )

@@ -65,12 +65,13 @@ const Header = (props) => {
         <HLink to="/#become">become infinite</HLink>
         <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
       </div>
-      {console.log(props.data, localStorage.auth, Object.values(localStorage))}
-      {!props.data || localStorage.nickname === 'undefined' || !localStorage.nickname
-        ? <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
+      {!props.data || localStorage.token === 'undefined' || !localStorage.token
+        ? <div className="header-authorized">
+            <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
+         </div>
         : (
           <div className="header-authorized">
-            <Link to="/workspace"><button>{localStorage.nickname}</button> </Link>
+            <Link to="/workspace"><button>{props.user ? props.user.userAttributes.nickname : 'username'}</button> </Link>
             <button onClick={() => signOut()} style={{ marginLeft: '20px', width: '50px', padding: '0.2em 1em' }}>X</button>
           </div>
         )
@@ -82,7 +83,8 @@ const Header = (props) => {
 }
 
 const mapStateToProps = state => ({
-  data: state.auth.personal_data
+  data: state.auth.personal_data,
+  user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

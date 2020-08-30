@@ -108,7 +108,7 @@
       width: 100%;
       display: grid;
       grid-template-columns: repeat(4, calc(25% - 8px));
-      grid-column-gap: 16px;
+      grid-gap: 16px;
       margin-top: 2em;
 
       div {
