@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Amplify from '@aws-amplify/core';
+import { Auth } from 'aws-amplify';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './App.scss';
 import MainPage from './pages/MainPage/MainPage';
@@ -25,6 +26,19 @@ Amplify.configure({
       redirectSignOut: window.location.origin,
       responseType: 'code'
     }
+  },
+  API: {
+    endpoints: [
+      {
+        name: 'PureWebCredentialsAPI',
+        endpoint: `https://jb30y4s0cf.execute-api.eu-central-1.amazonaws.com/development`,
+        custom_header: async () => ({
+          Authorization: `Bearer ${(await Auth.currentSession())
+            .getIdToken()
+            .getJwtToken()}`,
+        }),
+      },
+    ],
   },
 });
 
