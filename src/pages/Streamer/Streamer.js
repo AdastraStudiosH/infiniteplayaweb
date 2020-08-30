@@ -69,7 +69,8 @@ const Streamer = () => {
       let currentSession = await Auth.currentSession();
       let id_token = currentSession.getIdToken().getJwtToken();
       let access_token = currentSession.getAccessToken().getJwtToken();
-      emitter.EmitUIInteraction({id_token, access_token});
+      let refresh_token = currentSession.getRefreshToken().getJwtToken();
+      emitter.EmitUIInteraction({id_token, access_token, refresh_token});
       console.log('enit',{id_token, access_token});
     }
   },[streamerStatus]);
