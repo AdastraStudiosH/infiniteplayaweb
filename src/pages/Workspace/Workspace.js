@@ -126,7 +126,7 @@ const Workspace = (props) => {
           <div>
             <h3>Visitor</h3>
             <span>Two Hour Pass - $20</span>
-            <button onClick={() => paymentFunc('price_1HLfpUHyf8bGDaR7VcuqATLR')}>Buy</button>
+            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Buy</button>
           </div>
           <div>
             <h3>Weekend Warrior</h3>
