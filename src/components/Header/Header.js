@@ -48,21 +48,17 @@ const Header = (props) => {
   return (
     <header className="header">
       <Link className="logo" to="/"><img src={logo} alt="logo" /></Link>
-      {window.innerWidth < 500 && (
-        <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      )}
-      { window.innerWidth < 500 && (
-        <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
-          <HLink to="/#video">Experience the infinite</HLink>
-          <HLink to="/#gallery">gallery</HLink>
-          <HLink to="/#become">become infinite</HLink>
-          <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
-        </div>
-      )}
+      <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
+        <HLink to="/#video">Experience the infinite</HLink>
+        <HLink to="/#gallery">gallery</HLink>
+        <HLink to="/#become">become infinite</HLink>
+        <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
+      </div>
       <div className="links">
         <HLink to="/#video">Experience the infinite</HLink>
         <HLink to="/#gallery">gallery</HLink>

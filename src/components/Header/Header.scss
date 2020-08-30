@@ -3,11 +3,16 @@
   border-top: 0px solid rgba(47, 46, 46, 1);
   border-bottom: 0px solid rgba(47, 46, 46, 1);
   height: 117px;
-  // background-color: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2em;
+
+  .wrapper-links {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+  }
 
   .header-authorized {
     display: flex;
@@ -74,7 +79,7 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 1200px) {
   .header {
     height: 83px;
     background-color: #000;

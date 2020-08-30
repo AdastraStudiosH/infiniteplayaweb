@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import {Hub} from '@aws-amplify/core';
 import { connect } from 'react-redux';
@@ -49,7 +49,6 @@ const Login = (props) => {
     })
       .then((result) => {
         props.closeLogin();
-        console.log(result, result.storage, result.username);
         toggleSetRequest(false);
         localStorage.nickname = result.username;
         localStorage.token = result.signInUserSession.accessToken.jwtToken;
@@ -63,7 +62,6 @@ const Login = (props) => {
   };
 
   const signUp = async () => {
-    console.log(first_name, last_name, regUsername, email, password, repeatPassword);
     const result = await Auth.signUp({
       username: regUsername,
       password,
@@ -78,7 +76,6 @@ const Login = (props) => {
       props.setSignUpError(undefined);
       signIn();
     }).catch(e => props.setSignUpError(e.message))
-    console.log(result)
     return result;
   };
 

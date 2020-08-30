@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Amplify from '@aws-amplify/core';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import './App.scss';
-import MainPage from './pages/MainPage/MainPage';
 import FirstPage from './pages/FirstPage/FirstPage';
 import FAQ from './pages/FAQ/FAQ';
 import ParticipatePage from './pages/ParticipatePage/ParticipatePage';
@@ -15,6 +13,8 @@ import FailedPage from './pages/FailedPage/FailedPage';
 import { connect } from 'react-redux';
 import { setUserData } from './redux/user/user.reducer';
 import { bindActionCreators } from 'redux';
+
+import './App.scss';
 
 Amplify.configure({
   Auth: {
@@ -44,31 +44,26 @@ const App = (props) => {
 
 
   useEffect(() => {
-    console.log('here')
     fetchUserData();
   }, [JSON.stringify(props.user), localStorage.token])
-
-  console.log(localStorage.token)
 
   return (
     <div className="App">
       <BrowserRouter>
         <Switch>
-          <MainPage>
-            <Route exact={true} path="/" component={FirstPage} />
-            {localStorage.token !== undefined && localStorage.token !== 'undefined' ? (
-              <React.Fragment>
-                <Route path="/faq" component={FAQ} />
-                <Route path="/participate" component={ParticipatePage} />
-                <Route path="/form" component={ParticipateForm} />
-                <Route path="/workspace" component={Workspace} />
-                <Route path="/streamer" component={Streamer} />
-                <Route path="/unsupported" component={Unsupported} />
-                <Route path="/payment_success" component={ConfirmPage} />
-                <Route path="/payment_failed" component={FailedPage} />
-              </React.Fragment>
-            ) : <Redirect to="/" />} 
-          </MainPage>
+          <Route exact={true} path="/" component={FirstPage} />
+          {localStorage.token !== undefined && localStorage.token !== 'undefined' ? (
+            <React.Fragment>
+              <Route path="/faq" component={FAQ} />
+              <Route path="/participate" component={ParticipatePage} />
+              <Route path="/form" component={ParticipateForm} />
+              <Route path="/workspace" component={Workspace} />
+              <Route path="/streamer" component={Streamer} />
+              <Route path="/unsupported" component={Unsupported} />
+              <Route path="/payment_success" component={ConfirmPage} />
+              <Route path="/payment_failed" component={FailedPage} />
+            </React.Fragment>
+          ) : <Redirect to="/" />}
         </Switch>
       </BrowserRouter>
     </div>
