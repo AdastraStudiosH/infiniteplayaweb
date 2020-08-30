@@ -91,7 +91,11 @@ const SignUp = (props) => {
         {error && <div className="errors">{error}</div>}
         {isErrors && <div className="errors">{errMessage}</div>}
         <button onClick={() => {
-          error ? signUp() : validateFields() && toggleSetStep(2)
+          if (validateFields()){
+            toggleSetStep(2);
+          } else{
+            signUp();
+          }          
         }}>Sign Up</button>
       </React.Fragment>
     )
