@@ -4,9 +4,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background: url('../../images/first_back.png') no-repeat center;
-  background-size: 100%;
-
+  background:#000;
+  color:#fff;
 }
 
 #launchContainer button {
@@ -21,8 +20,21 @@
 
 }
 
-#launchContainer .player {
-  padding:20px;
+#launchContainer iframe {
+  position: absolute;
+  top:-58px;
+  left:0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+#launchContainer button {
+  position: absolute;
+  top: 95%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 #launchContainer img {
   width:250px;

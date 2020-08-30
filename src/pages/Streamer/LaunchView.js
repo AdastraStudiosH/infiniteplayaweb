@@ -47,14 +47,17 @@ const LaunchView = (props) => {
           <div className="player">
           <ReactPlayer 
             url={video}
+            controls={false}
+            playsinline={true}
             config={{
+              
               youtube: {
-                playerVars: { modestbranding: 1, playsinline: 1 }
+                playerVars: { modestbranding: 1, playsinline: 1, autoplay: 1 }
               }
             }}
           />
           </div>
-          <button color="blue" onClick={() => props.Launch()}>Begin</button>
+          <button color="blue" onClick={() => props.Launch()}>[ Press to Continue ]</button>
           {rotateMessage}
         </div>
     </div>
