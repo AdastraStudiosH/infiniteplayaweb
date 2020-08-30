@@ -24,7 +24,6 @@ export const authReducer = (state = authState, action) => {
 }
 
 export const setAuthData = (nickname, token) => dispatch => {
-  console.log('here');
   return dispatch({
     type: 'set-auth-data',
     nickname, token

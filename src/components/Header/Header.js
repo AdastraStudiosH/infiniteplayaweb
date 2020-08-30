@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import logo from '../../images/logo.png';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { HashLink as HLink } from 'react-router-hash-link';
 import Auth from '@aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
@@ -14,6 +14,7 @@ import "./Header.scss";
 const Header = (props) => {
   const [isOpen, setOpen] = useState(false);
   const [isLoginOpen, toggleLoginOpener] = useState(false);
+  const [IsSignOut, toggleSetSignOut] = useState(false);
 
   useEffect(() => {
     Hub.listen("auth", async ({ payload: { event, data } }) => {
@@ -39,38 +40,38 @@ const Header = (props) => {
     localStorage.nickname = undefined;
     localStorage.token = undefined;
     await Auth.signOut();
+    toggleSetSignOut(true);
   }
+
+  if (IsSignOut) return <Redirect to="/" />
 
   return (
     <header className="header">
       <Link className="logo" to="/"><img src={logo} alt="logo" /></Link>
-      {window.innerWidth < 500 && (
-        <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      )}
-      { window.innerWidth < 500 && (
-        <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
-          <HLink to="/#video">Experience the infinite</HLink>
-          <HLink to="/#gallery">gallery</HLink>
-          <HLink to="/#become">become infinite</HLink>
-          <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
-        </div>
-      )}
+      <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
+        <HLink to="/#video">Experience the infinite</HLink>
+        <HLink to="/#gallery">gallery</HLink>
+        <HLink to="/#become">become infinite</HLink>
+        <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
+      </div>
       <div className="links">
         <HLink to="/#video">Experience the infinite</HLink>
         <HLink to="/#gallery">gallery</HLink>
         <HLink to="/#become">become infinite</HLink>
         <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
       </div>
-      {console.log(props.data, localStorage.auth, Object.values(localStorage))}
-      {!props.data || localStorage.nickname === 'undefined' || !localStorage.nickname
-        ? <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
+      {!props.data || localStorage.token === 'undefined' || !localStorage.token
+        ? <div className="header-authorized">
+            <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
+         </div>
         : (
           <div className="header-authorized">
-            <Link to="/workspace"><button>{localStorage.nickname}</button> </Link>
+            <Link to="/workspace"><button>{props.user ? props.user.userAttributes.nickname : 'username'}</button> </Link>
             <button onClick={() => signOut()} style={{ marginLeft: '20px', width: '50px', padding: '0.2em 1em' }}>X</button>
           </div>
         )
@@ -82,7 +83,8 @@ const Header = (props) => {
 }
 
 const mapStateToProps = state => ({
-  data: state.auth.personal_data
+  data: state.auth.personal_data,
+  user: state.user.user
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

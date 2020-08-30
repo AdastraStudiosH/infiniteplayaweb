@@ -15,8 +15,6 @@ const stripePromise = loadStripe('pk_live_51HHEqjHyf8bGDaR7P9FvP0WZYtp2eHoeal1L2
 const Workspace = (props) => {
   const [isPaymentLoading, toggleLoadPayment] = useState(false);
 
-  console.log(props.token, props.user);
-
   const fetchUserData = async () => {
     const headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -52,13 +50,10 @@ const Workspace = (props) => {
       }).catch(() => toggleLoadPayment(false));
 
     const session = await response.json();
-    console.log(session);
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId
     })
-
-    console.log(result);
   }
 
   return (

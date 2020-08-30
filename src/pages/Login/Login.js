@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import {Hub} from '@aws-amplify/core';
 import { connect } from 'react-redux';
 import { setAuthData, setSignUpError } from '../../redux/auth/auth.reducer';
+import { setUserData } from '../../redux/user/user.reducer';
 import { bindActionCreators } from 'redux';
 import SignUp from './SignUp/SignUp';
 import WelcomeScreen from './WelcomeScreen/WelcomeScreen';
@@ -23,21 +24,36 @@ const Login = (props) => {
   const [first_name, setFirstName] = useState('');
   const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [isRequesting, toggleSetRequest] = useState(false);
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+  const fetchUserData = async () => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+
+    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
+      method: 'POST',
+      body: JSON.stringify({ 'AccessToken': localStorage.token })
+    }).then(res => res.json())
+    .then(data => props.setUserData(data))
+    .catch(err => console.log(err))
+  }
 
   const signIn = () => {
+    toggleSetRequest(true);
     Auth.signIn({
       username,
       password: loginPassword
     })
       .then((result) => {
         props.closeLogin();
-        console.log(result, result.storage, result.username);
+        toggleSetRequest(false);
         localStorage.nickname = result.username;
         localStorage.token = result.signInUserSession.accessToken.jwtToken;
         props.setSignUpError(undefined);
+        fetchUserData();
         props.setAuthData(result.username, result.signInUserSession.accessToken.jwtToken);
       })
       .catch((e) => {
@@ -46,7 +62,6 @@ const Login = (props) => {
   };
 
   const signUp = async () => {
-    console.log(first_name, last_name, regUsername, email, password, repeatPassword);
     const result = await Auth.signUp({
       username: regUsername,
       password,
@@ -61,7 +76,6 @@ const Login = (props) => {
       props.setSignUpError(undefined);
       signIn();
     }).catch(e => props.setSignUpError(e.message))
-    console.log(result)
     return result;
   };
 
@@ -83,7 +97,7 @@ const Login = (props) => {
             />
             <span onClick={() => toggleSetStep(1)}>Or create new account</span>
             {props.error && <div className="errors">{props.error}</div>}
-            <button onClick={() => signIn()}>Login</button>
+            <button onClick={() => signIn()}>{isRequesting ? 'Requesting' : 'Login'}</button>
             <h3>Or sign in with</h3>
             <div className="oauth">
               <button
@@ -158,7 +172,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     setAuthData,
-    setSignUpError
+    setSignUpError,
+    setUserData
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
