@@ -3,6 +3,7 @@ import Auth, { CognitoHostedUIIdentityProvider } from '@aws-amplify/auth';
 import {Hub} from '@aws-amplify/core';
 import { connect } from 'react-redux';
 import { setAuthData, setSignUpError } from '../../redux/auth/auth.reducer';
+import { setUserData } from '../../redux/user/user.reducer';
 import { bindActionCreators } from 'redux';
 import SignUp from './SignUp/SignUp';
 import WelcomeScreen from './WelcomeScreen/WelcomeScreen';
@@ -27,6 +28,18 @@ const Login = (props) => {
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
 
+  const fetchUserData = async () => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+
+    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
+      method: 'POST',
+      body: JSON.stringify({ 'AccessToken': localStorage.token })
+    }).then(res => res.json())
+    .then(data => props.setUserData(data))
+    .catch(err => console.log(err))
+  }
 
   const signIn = () => {
     toggleSetRequest(true);
@@ -41,6 +54,7 @@ const Login = (props) => {
         localStorage.nickname = result.username;
         localStorage.token = result.signInUserSession.accessToken.jwtToken;
         props.setSignUpError(undefined);
+        fetchUserData();
         props.setAuthData(result.username, result.signInUserSession.accessToken.jwtToken);
       })
       .catch((e) => {
@@ -161,7 +175,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
     setAuthData,
-    setSignUpError
+    setSignUpError,
+    setUserData
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

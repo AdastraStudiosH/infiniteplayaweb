@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Amplify from '@aws-amplify/core';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import './App.scss';
 import MainPage from './pages/MainPage/MainPage';
 import FirstPage from './pages/FirstPage/FirstPage';
@@ -56,14 +56,18 @@ const App = (props) => {
         <Switch>
           <MainPage>
             <Route exact={true} path="/" component={FirstPage} />
-            <Route path="/faq" component={FAQ} />
-            <Route path="/participate" component={ParticipatePage} />
-            <Route path="/form" component={ParticipateForm} />
-            <Route path="/workspace" component={Workspace} />
-            <Route path="/streamer" component={Streamer} />
-            <Route path="/unsupported" component={Unsupported} />
-            <Route path="/payment_success" component={ConfirmPage} />
-            <Route path="/payment_failed" component={FailedPage} />
+            {localStorage.token !== undefined && localStorage.token !== 'undefined' ? (
+              <React.Fragment>
+                <Route path="/faq" component={FAQ} />
+                <Route path="/participate" component={ParticipatePage} />
+                <Route path="/form" component={ParticipateForm} />
+                <Route path="/workspace" component={Workspace} />
+                <Route path="/streamer" component={Streamer} />
+                <Route path="/unsupported" component={Unsupported} />
+                <Route path="/payment_success" component={ConfirmPage} />
+                <Route path="/payment_failed" component={FailedPage} />
+              </React.Fragment>
+            ) : <Redirect to="/" />} 
           </MainPage>
         </Switch>
       </BrowserRouter>
