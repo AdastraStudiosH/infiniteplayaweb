@@ -7,7 +7,7 @@ import Auth from '@aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import Login from '../../pages/Login/Login';
 import { bindActionCreators } from 'redux';
-import { setAuthData, setIsLogin } from '../../redux/auth/auth.reducer';
+import { setAuthData, setIsLogin, setSignOut } from '../../redux/auth/auth.reducer';
 
 import "./Header.scss";
 
@@ -25,6 +25,7 @@ const Header = (props) => {
           localStorage.nickname = nickname;
           localStorage.token = token;
           props.setAuthData(nickname, token);
+          props.setSignOut(false);
           break;
         }
         default: {
@@ -40,6 +41,7 @@ const Header = (props) => {
     localStorage.token = undefined;
     await Auth.signOut();
     toggleSetSignOut(true);
+    props.setSignOut(true);
   }
 
   if (IsSignOut && window.location.pathname !== '/') return <Redirect to="/" />
@@ -90,7 +92,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   setAuthData,
-  setIsLogin
+  setIsLogin,
+  setSignOut
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

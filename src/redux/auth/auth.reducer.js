@@ -24,6 +24,13 @@ export const authReducer = (state = authState, action) => {
       }
     }
 
+    case 'set-sign-out': {
+      return {
+        ...state,
+        isSignOut: action.isSignOut
+      }
+    }
+
     default: {
       return state;
     }
@@ -49,5 +56,12 @@ export const setIsLogin = (isLogin) => dispatch => {
   return dispatch({
     type: 'set-is-login',
     isLogin
+  })
+}
+
+export const setSignOut = (isSignOut) => dispatch => {
+  return dispatch({
+    type: 'set-sign-out',
+    isSignOut
   })
 }

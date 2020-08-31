@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import title from '../../images/title.png';
 import exp_button from '../../images/exp_button.png';
 import watch_button from '../../images/watch_button.png';
@@ -12,27 +12,30 @@ import { setIsLogin } from '../../redux/auth/auth.reducer';
 import './Description.scss';
 
 const Description = (props) => {
-  console.log(props.isLogin);
+
+  console.log(props.isSignOut);
+
   return (
     <div className="description">
       <img src={title} alt="title" />
       {/* <p>go "home" at home</p> */}
       <p>Welcome Home</p>
       <div className="description-buttons">
-        <div onClick={e => {
-          !props.isLogin && props.setIsLogin(!props.isLogin);
-          e.stopPropagation();
-        }}>
-          <a onClick={e => e.stopPropagation()} href={localStorage.token === undefined || localStorage.token === 'undefined' ? '#' : "https://watch.infiniteplaya.com/"}>
+        <div>
+          <a 
+            onClick={() => {
+              props.isSignOut && props.setIsLogin(!props.isLogin)
+            }} 
+            href={props.isSignOut ? '#' : "https://watch.infiniteplaya.com/"}>
             <img src={watch_button} />
             <span>Free Live Streaming Content</span>
           </a>
         </div>
-        <div onClick={e => {
-          !props.isLogin && props.setIsLogin(!props.isLogin);
-          e.stopPropagation();
-        }}>
-          <Link onClick={e => e.stopPropagation()} to={localStorage.token === undefined || localStorage.token === 'undefined' ? '#' : "/streamer"}>
+        <div>
+          <Link 
+            onClick={() => {
+              props.isSignOut && props.setIsLogin(!props.isLogin)
+            }} to={props.isSignOut ? '#' : "/streamer"}>
             <img src={exp_button} />
             <span>Interactive Paid Experience</span>
           </Link>
@@ -57,7 +60,8 @@ const Description = (props) => {
 }
 
 const mapStateToProps = state => ({
-  isLogin: state.auth.isLogin
+  isLogin: state.auth.isLogin,
+  isSignOut: state.auth.isSignOut
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({

@@ -2,5 +2,6 @@ export const authState = {
   personal_data: [],
   auth_error: undefined,
   token: undefined,
-  isLogin: false
+  isLogin: false,
+  isSignOut: true
 };
