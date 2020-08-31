@@ -132,11 +132,6 @@ const Workspace = (props) => {
         <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
         <div id="purchase" className="purchases">
           <div>
-            <h3>Free (Development, $0.5)</h3>
-            <span>Free</span>
-            <button onClick={() => paymentFunc('price_1HLgFRHyf8bGDaR74oeBc1m2')}>Buy</button>
-          </div>
-          <div>
             <h3>Visitor</h3>
             <span>Two Hour Pass - $20</span>
             <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Buy</button>

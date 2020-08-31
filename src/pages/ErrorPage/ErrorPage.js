@@ -1,5 +1,6 @@
 import React from "react";
 import './ErrorPage.scss';
+import log from '../../Log';
 
 const ErrorPage = (props) => {
     const title = props?.location?.state?.title || "Streaming session error";
