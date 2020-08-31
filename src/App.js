@@ -36,7 +36,7 @@ Amplify.configure({
     endpoints: [
       {
         name: 'PureWebCredentialsAPI',
-        endpoint: `https://jb30y4s0cf.execute-api.eu-central-1.amazonaws.com/development`,
+        endpoint: `https://4a2rcuwaki.execute-api.eu-central-1.amazonaws.com/development`,
         custom_header: async () => ({
           Authorization: `Bearer ${(await Auth.currentSession())
             .getIdToken()
