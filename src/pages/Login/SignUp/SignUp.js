@@ -2,19 +2,41 @@ import React, { useState } from 'react';
 
 const SignUp = (props) => {
   const [isErrors, showErrors] = useState(false);
+  const [errMessage, errorMessage] = useState(false);
 
   const { signUp, error, last_name, setLastName, toggleSetStep, first_name, setFirstName, setEmail, email, regUsername, setRegUsername, repeatPassword, setRepeatPassword, password, setPassword } = props;
 
   const validateFields = () => {
-    let reg = /^[\S]+.*[\S]+$/;
+    let reg = /\d/;
 
-    if (first_name.length === 0 || last_name.length === 0 || email.length === 0 || !email.includes('@') || regUsername.length === 0 || !reg.test(password) || password !== repeatPassword) {
-      showErrors(true);
-      return false;
-    }
-
-    showErrors(false);
-    return true;
+      if (first_name.length === 0){
+        showErrors(true);
+        errorMessage('Please enter a first name');
+        return false;
+      } else if (last_name.length === 0) {
+        showErrors(true);
+        errorMessage('Please enter a last name');
+        return false;
+      } else if ((email.length === 0) || !email.includes('@') || !email.includes('.')) {
+        showErrors(true);
+        errorMessage('Please enter a valid email address');
+        return false;           
+      } else if (regUsername.length === 0){
+        showErrors(true);
+        errorMessage('Please enter a valid Playa name');
+        return false;        
+      } else if ((password.length < 8) || (!reg.test(password))) {
+        showErrors(true);
+        errorMessage('Please enter a valid password.  Your password must be at least 8 characters, and include at least one number.');
+        return false;
+      } else if (password !== repeatPassword) {
+        showErrors(true);
+        errorMessage('Please ensure that your password is the same in both password fields.');
+        return false;
+      } else {
+        showErrors(false);
+        return true;    
+      }            
   }
 
   return (
@@ -67,9 +89,13 @@ const SignUp = (props) => {
           <span>Opt in to share your information with Burning Man.</span>
         </div>
         {error && <div className="errors">{error}</div>}
-        {isErrors && <div className="errors">Need to fill all the fields</div>}
+        {isErrors && <div className="errors">{errMessage}</div>}
         <button onClick={() => {
-          error ? signUp() : validateFields() && toggleSetStep(2)
+          if (validateFields()){
+            toggleSetStep(2);
+          } else{
+            signUp();
+          }          
         }}>Sign Up</button>
       </React.Fragment>
     )
