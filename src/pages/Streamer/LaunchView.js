@@ -1,71 +1,51 @@
-import React, {useEffect, useState, useMemo} from "react";
-import ReactPlayer from 'react-player';
-import {isMobile} from 'react-device-detect';
-import rotate from '../../images/mobile-rotate.png';
+import React, {useEffect, useState, useRef} from "react";
+import title from '../../images/title.png';
+
 import "./LaunchView.scss";
 
-const greeterVideos = ['https://youtu.be/M--OsMIduBo', 
-                           'https://youtu.be/HGqP4rl5Z6A',
-                           'https://youtu.be/-BJ-T1SULpo',
-                           'https://youtu.be/KaYaujUGHXc',
-                           'https://youtu.be/WCmngYiL2iM']
+// const greeterVideos = ['https://youtu.be/M--OsMIduBo', 
+//                            'https://youtu.be/HGqP4rl5Z6A',
+//                            'https://youtu.be/-BJ-T1SULpo',
+//                            'https://youtu.be/KaYaujUGHXc',
+//                            'https://youtu.be/WCmngYiL2iM']
+
+const greeterVideos = ['https://d2yfukh5cx27cp.cloudfront.net/Intro_Helix.mp4',
+                       'https://d2yfukh5cx27cp.cloudfront.net/Intro_DaleyDale.mp4',
+                       'https://d2yfukh5cx27cp.cloudfront.net/Intro_FoxyFlambe.mp4',
+                       'https://d2yfukh5cx27cp.cloudfront.net/Intro_Helix.mp4',
+                       'https://d2yfukh5cx27cp.cloudfront.net/Intro_Lynnfinity.mp4',
+                       'https://d2yfukh5cx27cp.cloudfront.net/Intro_Natasha.mp4']
 
 const video = greeterVideos[greeterVideos.length * Math.random() | 0];
 
 const LaunchView = (props) => {
-
-  
-  
-
-  const [dimensions, setDimensions] = useState({ 
-    height: window.innerHeight,
-    width: window.innerWidth
-  });
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    function handleResize() {
-      setDimensions({
-        height: window.innerHeight,
-        width: window.innerWidth
-      })
-    }
-    
+    const handler = () => {
+      if (videoRef.current === null) return;
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    };
 
-    window.addEventListener('resize', handleResize)
+    document.addEventListener('click', handler);
+    return () => {
+      document.removeEventListener('click', handler);
+    };
   });
 
-  const shouldRotate = isMobile && dimensions.height > dimensions.width;
-  
-  if (shouldRotate) {
-    return (
-    <div id="launchContainer">      
-      <div id="rotateMessage">
-        <h3>Please rotate your device</h3>
-        <img src={rotate} alt="Please rotate your device"/>
-      </div>
-    </div>);
-  }
-  else
+  const playing = isMuted ? <span role="img" aria-label="unmute">&#128264;</span> : <span role="img" aria-label="unmute">&#128266;</span>
   return (
     <div id="launchContainer">
-    
       <div>
-        
-        <h1>Welcome to The Infinite Playa</h1>
           <div className="player">
-          <ReactPlayer 
-            url={video}
-            controls={false}
-            playsinline={true}
-            config={{
-              
-              youtube: {
-                playerVars: { modestbranding: 1, playsinline: 1, autoplay: 1 }
-              }
-            }}
-          />
+          <video ref={videoRef} id="greeterVideo" poster={title} loop autoPlay muted>
+            <source src={video} type="video/mp4"/>
+          </video>
           </div>
-          <button onClick={() => props.Launch()}>[ Press to Continue ]</button>
+          <button className="unmute">{playing}</button>
+          <button className="continue" disabled={!props.Ready} onClick={() => props.Launch()}>[ Press to Continue ]</button>
         </div>
     </div>
   );
