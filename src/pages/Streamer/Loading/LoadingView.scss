@@ -2,10 +2,27 @@
 .loadingView {
     height: 100%;
 }
+
+.loadingView button {
+
+  padding: 0.25em;
+  border: none;
+  color: #fff;
+  font-family: 'GoboldHeader', sans-serif;
+  font-size: 30px;
+  background: rgb(0, 0, 0); 
+  border:1px solid white;
+
+}
+
+.loadingView button:hover {
+  background-color: rgba(32,30,26, 0.8);
+}
+
 .mapViewer {
   left: 0;
   width: 100%;
-  height: 110%;
+  height: 100%;
 }
 
 #vidtop-content {

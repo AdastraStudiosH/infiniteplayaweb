@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Redirect } from "react-router-dom";
+import {isMobile} from 'react-device-detect';
 import useAsyncEffect from "use-async-effect";
 import {
   PlatformNext,
@@ -144,9 +145,12 @@ const Streamer = () => {
 
   if (audioStream) audio.srcObject = audioStream;
 
-  // Render / redirect unsupported
-  if (!System.IsBrowserSupported()) {
-    return <Redirect to="/unsupported" />;
+  // Render / redirect unsupporte\d
+  if (!System.IsBrowserSupported() || isMobile) {
+    return <Redirect to={{
+      pathname: "/unsupported",
+      state: {isMobile}
+    }}/>
   }
 
  
@@ -162,7 +166,7 @@ const Streamer = () => {
       UseNativeTouchEvents={true}
     />
   ) : (
-    <LaunchView Launch={launch} />
+    <LaunchView Launch={launch} Ready={modelDefinition !== null}/>
   );
 
   return <section className="streamer">{view}</section>;

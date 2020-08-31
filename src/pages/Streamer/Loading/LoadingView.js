@@ -1,17 +1,50 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { StreamerStatus } from "@calgaryscientific/platform-sdk-react";
 import { LaunchStatusType } from "@calgaryscientific/platform-sdk";
-
+import log from '../../../Log';
 import './LoadingView.scss';
 
+const loadingFrames =  ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 const LoadingView = (props) => {
+  const [isHidden, setIsHidden] = useState(false);
+  const [frame, setFrame] = useState('');
 
-    const [isHidden, setIsHidden] = useState(false);
+  useEffect(() => {
+    log.debug("Launch request status", props.LaunchRequestStatus);
+  }, [props.LaunchRequestStatus])
+  useEffect(() => {
+    if (props.LaunchRequestStatus.status !== LaunchStatusType.Queued) return;
+    let frame = 0;
+    let timeout = setInterval(() => {
+      frame = (frame + 1 === loadingFrames.length) ? 0 : frame + 1;
+      setFrame(loadingFrames[frame]);
+    }, 80);
 
-   
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [props.LaunchRequestStatus.status]);
 
     if (isHidden) return <div/>;
-    
+    let friendlyMessage = "";
+    switch(props.LaunchRequestStatus.status) {
+      case LaunchStatusType.Unknown:
+        friendlyMessage = "Initiating request";
+        break;
+      case LaunchStatusType.Accepted:
+        friendlyMessage = "Your request has been accepted";
+        break;
+      case LaunchStatusType.Queued:
+        friendlyMessage = "You've entered the queue ";
+        break;
+      case LaunchStatusType.Ready:
+        friendlyMessage = "Your session is starting soon, get ready.";
+        break;
+      case LaunchStatusType.Serviced:
+      default: 
+        friendlyMessage = "";
+    }
+
     let content;
     if (
       props.LaunchRequestStatus.status === LaunchStatusType.Unavailable ||
@@ -33,8 +66,8 @@ const LoadingView = (props) => {
 
           <div id="vidtop-content">
             <div className="vid-info">
-              <h1>Get ready to join the Playa. Your experience is loading.</h1>
-              <h3>Queue status: {props.LaunchRequestStatus.status}</h3>
+              <h1>We're loading your Infinite Playa experience. Please explore the world map while you wait.</h1>
+              <h3>{friendlyMessage}{frame}</h3>
               { 
                 props.LaunchRequestStatus.status === LaunchStatusType.Serviced ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
               }
