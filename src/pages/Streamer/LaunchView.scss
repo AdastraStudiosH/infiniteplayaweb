@@ -10,32 +10,38 @@
 }
 
 #launchContainer button {
-  margin-bottom: 20px;
-  width: 500px;
-  background-color: #000;
-  padding: 0.5em 0;
+
+  padding: 0.25em 0;
   border: none;
   color: #fff;
   font-family: 'GoboldHeader', sans-serif;
   font-size: 30px;
+  background: rgb(0, 0, 0, 0); 
 
 }
 
-#launchContainer iframe {
-  position: absolute;
-  top:-58px;
-  left:0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
+#launchContainer button:hover {
+    background-color: rgba(32,30,26, 0.8);
 }
 
-#launchContainer button {
+#launchContainer button.continue {
+  margin-bottom: 20px;
+  width: 500px;
   position: absolute;
-  top: 95%;
+  top: 97%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+#launchContainer button.unmute {
+  position: absolute;
+  top:0px;
+  right:5px;
+  width:50px;
+}
+
+#launchContainer button:disabled {
+  color:grey;
 }
 
 #rotateMessage {

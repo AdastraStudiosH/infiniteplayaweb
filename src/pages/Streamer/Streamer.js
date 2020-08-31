@@ -154,7 +154,7 @@ const Streamer = () => {
       UseNativeTouchEvents={true}
     />
   ) : (
-    <LaunchView Launch={launch} />
+    <LaunchView Launch={launch} Ready={modelDefinition !== null}/>
   );
 
   return <section className="streamer">{view}</section>;
