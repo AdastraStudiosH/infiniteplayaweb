@@ -35,6 +35,10 @@
       flex-direction: column;
       width: 400px;
 
+      a {
+        text-decoration: none;
+      }
+
       &:first-child {
         span {
           &::before {

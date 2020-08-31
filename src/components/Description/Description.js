@@ -2,25 +2,40 @@ import React from 'react';
 import title from '../../images/title.png';
 import exp_button from '../../images/exp_button.png';
 import watch_button from '../../images/watch_button.png';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import arrow from '../../images/arrow.svg';
 import { HashLink as HLink } from 'react-router-hash-link';
+import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux';
+import { setIsLogin } from '../../redux/auth/auth.reducer';
 
 import './Description.scss';
 
-const Description = ({ toVideo }) => {
+const Description = (props) => {
+  console.log(props.isLogin);
   return (
     <div className="description">
       <img src={title} alt="title" />
       {/* <p>go "home" at home</p> */}
       <p>Welcome Home</p>
       <div className="description-buttons">
-        <div>
-          <img src={watch_button} />
-          <span>Free Live Streaming Content</span>
+        <div onClick={e => {
+          !props.isLogin && props.setIsLogin(!props.isLogin);
+          e.stopPropagation();
+        }}>
+          <a onClick={e => e.stopPropagation()} href={localStorage.token === undefined || localStorage.token === 'undefined' ? '#' : "https://watch.infiniteplaya.com/"}>
+            <img src={watch_button} />
+            <span>Free Live Streaming Content</span>
+          </a>
         </div>
-        <div>
-          <img src={exp_button} />
-          <span>Interactive Paid Experience</span>
+        <div onClick={e => {
+          !props.isLogin && props.setIsLogin(!props.isLogin);
+          e.stopPropagation();
+        }}>
+          <Link onClick={e => e.stopPropagation()} to={localStorage.token === undefined || localStorage.token === 'undefined' ? '#' : "/streamer"}>
+            <img src={exp_button} />
+            <span>Interactive Paid Experience</span>
+          </Link>
         </div>
       </div>
 
@@ -41,4 +56,12 @@ const Description = ({ toVideo }) => {
   )
 }
 
-export default Description
+const mapStateToProps = state => ({
+  isLogin: state.auth.isLogin
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+  setIsLogin
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Description);

@@ -7,13 +7,12 @@ import Auth from '@aws-amplify/auth';
 import { Hub } from '@aws-amplify/core';
 import Login from '../../pages/Login/Login';
 import { bindActionCreators } from 'redux';
-import { setAuthData } from '../../redux/auth/auth.reducer';
+import { setAuthData, setIsLogin } from '../../redux/auth/auth.reducer';
 
 import "./Header.scss";
 
 const Header = (props) => {
   const [isOpen, setOpen] = useState(false);
-  const [isLoginOpen, toggleLoginOpener] = useState(false);
   const [IsSignOut, toggleSetSignOut] = useState(false);
 
   useEffect(() => {
@@ -43,7 +42,7 @@ const Header = (props) => {
     toggleSetSignOut(true);
   }
 
-  if (IsSignOut) return <Redirect to="/" />
+  if (IsSignOut && window.location.pathname !== '/') return <Redirect to="/" />
 
   return (
     <header className="header">
@@ -68,7 +67,7 @@ const Header = (props) => {
       </div> */}
       {!props.data || localStorage.token === 'undefined' || !localStorage.token
         ? <div className="header-authorized">
-            <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>
+            <button onClick={() => props.setIsLogin(!props.isLogin)}>Login</button>
          </div>
         : (
           <div className="header-authorized">
@@ -77,7 +76,7 @@ const Header = (props) => {
           </div>
         )
       }
-      {isLoginOpen && <Login closeLogin={() => toggleLoginOpener(false)} />}
+      {props.isLogin && <Login closeLogin={() => props.setIsLogin(false)} />}
       
     </header>
   )
@@ -85,11 +84,13 @@ const Header = (props) => {
 
 const mapStateToProps = state => ({
   data: state.auth.personal_data,
-  user: state.user.user
+  user: state.user.user,
+  isLogin: state.auth.isLogin
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  setAuthData
+  setAuthData,
+  setIsLogin
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

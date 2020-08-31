@@ -17,6 +17,13 @@ export const authReducer = (state = authState, action) => {
       }
     }
 
+    case 'set-is-login': {
+      return {
+        ...state,
+        isLogin: action.isLogin
+      }
+    }
+
     default: {
       return state;
     }
@@ -35,5 +42,12 @@ export const setSignUpError = (error) => dispatch => {
   return dispatch({
     type: 'set-sign-up-error',
     error
+  })
+}
+
+export const setIsLogin = (isLogin) => dispatch => {
+  return dispatch({
+    type: 'set-is-login',
+    isLogin
   })
 }
