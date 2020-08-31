@@ -81,12 +81,14 @@ const Streamer = () => {
     }
   },[streamerStatus]);
 
+  let params = new URLSearchParams(window.location.search);
+  console.log(params.has('local_development'));
+  const LOCAL_DEV = params.has('local_development');
+
   // Fetch project definition
   useAsyncEffect(async () => {
 
-    let params = new URLSearchParams(window.location.search);
-    console.log(params.has('local_development'));
-    const LOCAL_DEV = params.has('local_development');
+    
     if(LOCAL_DEV) {
       setModelDefinition(new LocalModelDefinition(`ws://localhost`));
     } else {
@@ -110,7 +112,7 @@ const Streamer = () => {
           if (statusEvent.status === LaunchStatusType.Ready) {
             let signallingConnection = new WebSocketSignalling(
               statusEvent.message,
-              false
+              LOCAL_DEV
             );
             setSignallingConnection(signallingConnection);
           }
