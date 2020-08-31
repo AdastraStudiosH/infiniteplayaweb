@@ -43,7 +43,7 @@ const Terms = (props) => {
       <h3>9. DMCA Notice and Takedown Policy</h3>
       <p>The Infinite Playa  maintains the following DMCA Notice and Takedown Policy. The Infinite Playa respects the intellectual property rights of third parties, and expects others to do the same. As part of our effort to recognize the copyrights of third parties, The Infinite Playa complies with the U.S. Digital Millennium Copyright Act ("DMCA") and is therefore protected by the limitations on liability recognized by 17 U.S.C. § 512; commonly known as the "safe harbor" provisions of the DMCA. If you believe that your work has been copied, reproduced, altered, or published in a way that constitutes copyright infringement under federal law, or your copyrights have been otherwise violated, please click the <span>“DMCA Notice and Takedown”</span> link and fill out all the required information. This will notify our Designated Agent. The Infinite Playa will then proceed in a timely manner to notify the Contributor of the alleged infringement, and take steps to disable or remove the material in question.</p>
       <p className="accept">By clicking the “accept” button, you acknowledge that: (1) you are 13 years of age or older, and if you are between the ages of 13 and 18, you have obtained consent from your parent or guardian; and (2) you have read, understood, and accepted the terms and conditions of this agreement.</p>
-      <button onClick={() => props.toggleSetStep(5)}>Accept</button>
+      <button onClick={() => props.toggleSetStep(6)}>Accept</button>
     </div>
   )
 }

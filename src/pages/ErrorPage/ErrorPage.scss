@@ -1,5 +1,5 @@
 
-.unsupportedContainer {
+.errorContainer {
     height:100%;
     width:100%;
 
@@ -14,9 +14,7 @@
     text-align: center;
 }
 
-.unsupported {
-
-
+.error {
     display: flex;
     flex-direction: column;
     align-items: center;

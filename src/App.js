@@ -12,9 +12,11 @@ import Streamer from './pages/Streamer/Streamer';
 import Unsupported from './pages/UnsupportedBrowser/Unsupported';
 import ConfirmPage from './pages/ConfirmPage/ConfirmPage';
 import FailedPage from './pages/FailedPage/FailedPage';
+import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { connect } from 'react-redux';
 import { setUserData } from './redux/user/user.reducer';
 import { bindActionCreators } from 'redux';
+import log from './Log';
 
 import './App.scss';
 
@@ -54,7 +56,7 @@ const App = (props) => {
       body: JSON.stringify({ 'AccessToken': localStorage.token })
     }).then(res => res.json())
     .then(data => props.setUserData(data))
-    .catch(err => console.log(err))
+    .catch(err => log.error(err))
   }
 
 
@@ -73,6 +75,7 @@ const App = (props) => {
               <Route path="/participate" component={ParticipatePage} />
               <Route path="/form" component={ParticipateForm} />
               <Route path="/workspace" component={Workspace} />
+              <Route path="/error" component={ErrorPage} />
               <Route path="/streamer" component={Streamer} />
               <Route path="/unsupported" component={Unsupported} />
               <Route path="/payment_success" component={ConfirmPage} />
