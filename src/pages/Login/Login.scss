@@ -22,6 +22,56 @@
   z-index: 10;
   max-height: calc(100vh - 280px);
 
+  .inner-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 2em;
+    width: 80%;
+    border: 1px solid #fff;
+  }
+
+  .registration-button-block {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background-color: #f5ede5;
+    color: #000;
+    padding: 0.6em 0.3em;
+    border-radius: 1em;
+    margin-top: 30px;
+
+    div {
+      padding-left: 0;
+      margin-bottom: 20px;
+
+      span {
+        margin-left: 0;
+      }
+
+      input {
+        height: 20px;
+      }
+    }
+
+    button {
+      background-color: #5d967a;
+      width: max-content;
+      margin: 0 auto;
+      padding: 4px 12px;
+      font-size: 1.6em;
+      border-radius: 40px;
+      letter-spacing: 0.2em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        height: 20px;
+        margin-left: 4px;
+      }
+    }
+  }
+
   h2 {
     color: #fff;
     font-weight: bold;
@@ -29,6 +79,7 @@
     font-size: 3em;
     letter-spacing: 0.1em;
     margin-top: 0;
+    text-decoration: none !important;
     margin-bottom: 0.4em;
   }
 

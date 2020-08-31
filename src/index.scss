@@ -60,9 +60,9 @@ button, input[type="checkbox"] {
   width: 0;
 }
 
-.errors {
+#errors {
   margin: 1em 0;
-  color: red;
+  color: red !important;
 }
 
 .non-clickable-button {

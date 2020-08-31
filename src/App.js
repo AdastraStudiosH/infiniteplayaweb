@@ -15,6 +15,7 @@ import FailedPage from './pages/FailedPage/FailedPage';
 import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { connect } from 'react-redux';
 import { setUserData } from './redux/user/user.reducer';
+import { setAuthData, setSignOut } from './redux/auth/auth.reducer';
 import { bindActionCreators } from 'redux';
 import log from './Log';
 
@@ -56,7 +57,13 @@ const App = (props) => {
       body: JSON.stringify({ 'AccessToken': localStorage.token })
     }).then(res => res.json())
     .then(data => props.setUserData(data))
-    .catch(err => log.error(err))
+    .catch(async (err) => {
+      props.setAuthData(undefined);
+      localStorage.nickname = undefined;
+      localStorage.token = undefined;
+      props.setSignOut(true);
+      await Auth.signOut();
+    })
   }
 
 
@@ -94,7 +101,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators({
-    setUserData
+    setUserData,
+    setSignOut,
+    setAuthData
   }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

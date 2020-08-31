@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import arrow from '../../images/arrow.svg';
 import { HashLink as HLink } from 'react-router-hash-link';
-import { bindActionCreators } from '../../../../../../Library/Caches/typescript/3.5/node_modules/redux';
+import { bindActionCreators } from 'redux';
 import { setIsLogin } from '../../redux/auth/auth.reducer';
 
 import './Description.scss';

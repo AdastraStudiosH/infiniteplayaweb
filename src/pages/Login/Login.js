@@ -96,7 +96,7 @@ const Login = (props) => {
               onKeyPressCapture={e => e.code === 13 && signIn()}
             />
             <span onClick={() => toggleSetStep(1)}>Or create new account</span>
-            {props.error && <div className="errors">{props.error}</div>}
+            {props.error && <div id="errors">{props.error}</div>}
             <button onClick={() => signIn()}>{isRequesting ? 'Requesting' : 'Login'}</button>
             <h3>Or sign in with</h3>
             <div className="oauth">
