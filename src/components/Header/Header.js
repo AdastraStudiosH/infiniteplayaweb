@@ -47,24 +47,25 @@ const Header = (props) => {
 
   return (
     <header className="header">
-      <Link className="logo" to="/"><img src={logo} alt="logo" /></Link>
-      <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
+      {/* <Link className="logo" to="/"><img src={logo} alt="logo" /></Link> */}
+      <h2>DMCA Take Down</h2>
+      {/* <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
         <span></span>
         <span></span>
         <span></span>
-      </div>
-      <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
+      </div> */}
+      {/* <div className={`wrapper-links ${isOpen ? 'header-open' : ''}`} onClick={() => setOpen(false)}>
         <HLink to="/#video">Experience the infinite</HLink>
         <HLink to="/#gallery">gallery</HLink>
         <HLink to="/#become">become infinite</HLink>
         <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
-      </div>
-      <div className="links">
+      </div> */}
+      {/* <div className="links">
         <HLink to="/#video">Experience the infinite</HLink>
         <HLink to="/#gallery">gallery</HLink>
         <HLink to="/#become">become infinite</HLink>
         <Link className={window.location.pathname.includes('faq') ? 'active-link' : ''} to="/faq">faq</Link>
-      </div>
+      </div> */}
       {!props.data || localStorage.token === 'undefined' || !localStorage.token
         ? <div className="header-authorized">
             <button onClick={() => toggleLoginOpener(!isLoginOpen)}>Login</button>

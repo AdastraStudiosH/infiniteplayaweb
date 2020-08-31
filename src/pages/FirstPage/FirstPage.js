@@ -37,11 +37,11 @@ const FirstPage = () => {
       <section className="background">
         <Header />
         <Description />
-        <section className="main-buttons">
+        {/* <section className="main-buttons">
           <button><a href="https://watch.infiniteplaya.com/" target="_blanc">Watch The Infinity</a></button>
           <button>Experience The Infinity</button>
           <button>Infinite extras in VR</button>
-        </section>
+        </section> */}
       </section>
       <section className="background-second">
         <VideoComp />

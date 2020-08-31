@@ -139,7 +139,8 @@
 
       div {
         background: url('../../images/donate.svg') no-repeat center;
-        background-size: contain;
+        background-size: cover;
+        background-position-y: -25px;
         width: 200px;
         height: 80px;
         margin: 0 auto;
