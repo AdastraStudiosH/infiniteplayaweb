@@ -87,7 +87,7 @@ const Streamer = () => {
     console.log(params.has('local_development'));
     const LOCAL_DEV = params.has('local_development');
     if(LOCAL_DEV) {
-      setModelDefinition(new LocalModelDefinition(`ws:/localhost`));
+      setModelDefinition(new LocalModelDefinition(`ws://localhost`));
     } else {
     const credentials = new PlatformCredentials();
     const res = await API.get("PureWebCredentialsAPI", "/credentials", {});
