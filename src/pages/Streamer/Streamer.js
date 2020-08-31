@@ -17,6 +17,7 @@ import {
 import LaunchView from "./LaunchView";
 import MainView from "./MainView";
 import { API, Auth } from "aws-amplify";
+import log from '../../Log';
 
 import "./Streamer.scss";
 
@@ -57,7 +58,7 @@ const Streamer = () => {
     window.addEventListener("beforeunload", async () => {
       if (launchRequest == null) return;
       if (launchRequest.status.getValue() !== LaunchStatusType.Serviced) {
-        console.log("Cancelling pending launch request.");
+        log.info("Cancelling pending launch request.");
         await launchRequest.cancel();
       }
     });
@@ -70,8 +71,9 @@ const Streamer = () => {
       let id_token = currentSession.getIdToken().getJwtToken();
       let access_token = currentSession.getAccessToken().getJwtToken();
       let refresh_token = currentSession.getRefreshToken().getJwtToken();
-      emitter.EmitUIInteraction({id_token, access_token, refresh_token});
-      console.log('enit',{id_token, access_token});
+      emitter.EmitUIInteraction({id_token, access_token, refresh_token});   
+      
+      log.info("Sending credentials to game.");
     }
   },[streamerStatus]);
 
@@ -82,7 +84,7 @@ const Streamer = () => {
     const credentials = new PlatformCredentials();
     const res = await API.get("PureWebCredentialsAPI", "/credentials", {});
     credentials.fromJSON(res);
-    console.log("creds ", credentials);
+    log.debug("Received platform access credentials: ", credentials);
     // @ts-ignore
     platform.credentials = credentials;
     let models = await platform.getModels();

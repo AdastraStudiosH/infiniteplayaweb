@@ -16,6 +16,7 @@ import ErrorPage from './pages/ErrorPage/ErrorPage';
 import { connect } from 'react-redux';
 import { setUserData } from './redux/user/user.reducer';
 import { bindActionCreators } from 'redux';
+import log from './Log';
 
 import './App.scss';
 
@@ -55,7 +56,7 @@ const App = (props) => {
       body: JSON.stringify({ 'AccessToken': localStorage.token })
     }).then(res => res.json())
     .then(data => props.setUserData(data))
-    .catch(err => console.log(err))
+    .catch(err => log.error(err))
   }
 
 

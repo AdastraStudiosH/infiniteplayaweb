@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useMemo} from "react";
 import ReactPlayer from 'react-player';
 import {isMobile} from 'react-device-detect';
-import rotate from '../../images/mobile-rotate.svg';
+import rotate from '../../images/mobile-rotate.png';
 import "./LaunchView.scss";
 
 const greeterVideos = ['https://youtu.be/M--OsMIduBo', 
@@ -35,14 +35,22 @@ const LaunchView = (props) => {
   });
 
   const shouldRotate = isMobile && dimensions.height > dimensions.width;
-  const rotateMessage = shouldRotate ? 
-  <div>
-    <img src={rotate} alt="Rotate your device"/>
-    <p>Experience best viewed in landscape</p>
-  </div> : <div/>;
+  
+  if (shouldRotate) {
+    return (
+    <div id="launchContainer">      
+      <div id="rotateMessage">
+        <h3>Please rotate your device</h3>
+        <img src={rotate} alt="Please rotate your device"/>
+      </div>
+    </div>);
+  }
+  else
   return (
     <div id="launchContainer">
+    
       <div>
+        
         <h1>Welcome to The Infinite Playa</h1>
           <div className="player">
           <ReactPlayer 
@@ -57,8 +65,7 @@ const LaunchView = (props) => {
             }}
           />
           </div>
-          <button color="blue" onClick={() => props.Launch()}>[ Press to Continue ]</button>
-          {rotateMessage}
+          <button onClick={() => props.Launch()}>[ Press to Continue ]</button>
         </div>
     </div>
   );
