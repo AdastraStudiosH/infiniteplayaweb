@@ -21,6 +21,7 @@ const LoadingView = (props) => {
     }, 80);
 
     return () => {
+      setFrame('');
       clearTimeout(timeout);
     };
   }, [props.LaunchRequestStatus.status]);
