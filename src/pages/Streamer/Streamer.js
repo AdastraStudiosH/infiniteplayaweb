@@ -7,12 +7,16 @@ import {
   PlatformCredentials,
   LaunchStatusType,
   WebSocketSignalling,
+  ModelDefinitionType,
+  LocalLaunchRequest,
+  LocalModelDefinition
 } from "@calgaryscientific/platform-sdk";
 import {
   useStreamer,
   DefaultStreamerOptions,
   System,
-  StreamerStatus,
+  StreamerStatus
+  
 } from "@calgaryscientific/platform-sdk-react";
 
 import LaunchView from "./LaunchView";
@@ -71,17 +75,21 @@ const Streamer = () => {
       let currentSession = await Auth.currentSession();
       let id_token = currentSession.getIdToken().getJwtToken();
       let access_token = currentSession.getAccessToken().getJwtToken();
-      let refresh_token = currentSession.getRefreshToken().getJwtToken();
-      emitter.EmitUIInteraction({id_token, access_token, refresh_token});   
-      
+      let refresh_token = currentSession.getRefreshToken().getToken();
+      emitter.EmitUIInteraction({id_token, access_token, refresh_token});
       log.info("Sending credentials to game.");
     }
   },[streamerStatus]);
 
   // Fetch project definition
   useAsyncEffect(async () => {
-    //await platform.useAnonymousCredentials("e42dc69a-115e-49b0-bd0c-ce95d700c76b");
 
+    let params = new URLSearchParams(window.location.search);
+    console.log(params.has('local_development'));
+    const LOCAL_DEV = params.has('local_development');
+    if(LOCAL_DEV) {
+      setModelDefinition(new LocalModelDefinition(`ws://localhost`));
+    } else {
     const credentials = new PlatformCredentials();
     const res = await API.get("PureWebCredentialsAPI", "/credentials", {});
     credentials.fromJSON(res);
@@ -90,6 +98,7 @@ const Streamer = () => {
     platform.credentials = credentials;
     let models = await platform.getModels();
     setModelDefinition(models[0]);
+    }
   }, []);
 
   // Monitor Launch Request Status
@@ -126,9 +135,12 @@ const Streamer = () => {
 
     setLoading(true);
     audio.load();
-
-    let lr = await platform.requestModel(modelDefinition);
-    setLaunchRequest(lr);
+    if(modelDefinition.type === ModelDefinitionType.Local) {
+      setLaunchRequest(new LocalLaunchRequest('', modelDefinition));
+    } else {
+      let lr = await platform.requestModel(modelDefinition);
+      setLaunchRequest(lr);
+    }
   };
 
   if (audioStream) audio.srcObject = audioStream;
