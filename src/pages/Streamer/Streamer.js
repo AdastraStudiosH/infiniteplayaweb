@@ -71,7 +71,6 @@ const Streamer = () => {
 
 
   let params = new URLSearchParams(window.location.search);
-  console.log(params.has('local_development'));
   const LOCAL_DEV = params.has('local_development');
 
   // Fetch project definition
@@ -92,6 +91,27 @@ const Streamer = () => {
     }
   }, []);
 
+  
+
+  useEffect(() => {
+    if (launchRequest == null) return;
+
+    let subscription = launchRequest.status.subscribe(async lrStatus => {
+      if (lrStatus.status === LaunchStatusType.Serviced) {
+        let currentSession = await Auth.currentSession();
+        let id_token = currentSession.getIdToken().getJwtToken();
+        let access_token = currentSession.getAccessToken().getJwtToken();
+        let refresh_token = currentSession.getRefreshToken().getToken();
+        let mobile = isMobile;
+        emitter.EmitUIInteraction({id_token, access_token, refresh_token, mobile});
+        log.info(`Sending credentials to game.`);
+      }
+    });
+    return () => {subscription.unsubscribe()};
+    
+  }, [launchRequest,emitter]);
+
+  
 
   // Monitor Launch Request Status
   useEffect(() => {
@@ -103,14 +123,7 @@ const Streamer = () => {
           let msg = JSON.parse(messageString);
           let {type} = msg;
           if(type === 'ready' ) {
-            (async () => {let currentSession = await Auth.currentSession();
-              let id_token = currentSession.getIdToken().getJwtToken();
-              let access_token = currentSession.getAccessToken().getJwtToken();
-              let refresh_token = currentSession.getRefreshToken().getToken();
-              let mobile = isMobile;
-              emitter.EmitUIInteraction({id_token, access_token, refresh_token, mobile});
-              log.info(`Sending credentials to game.`);
-              })();
+            //sendCredentials();
           }
         } catch (err) {
           log.error(err);

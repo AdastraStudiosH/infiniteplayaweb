@@ -4,7 +4,7 @@ import { LaunchStatusType } from "@calgaryscientific/platform-sdk";
 import log from '../../../Log';
 import './LoadingView.scss';
 
-const loadingFrames =  ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
+const loadingFrames =  [' ⠋', ' ⠙', ' ⠹', ' ⠸', ' ⠼', ' ⠴', ' ⠦', ' ⠧', ' ⠇', ' ⠏'];
 const LoadingView = (props) => {
   const [isHidden, setIsHidden] = useState(false);
   const [frame, setFrame] = useState('');
@@ -12,8 +12,9 @@ const LoadingView = (props) => {
   useEffect(() => {
     log.debug("Launch request status", props.LaunchRequestStatus);
   }, [props.LaunchRequestStatus])
+
   useEffect(() => {
-    if (props.LaunchRequestStatus.status !== LaunchStatusType.Queued) return;
+    if (props.LaunchRequestStatus.status === LaunchStatusType.Serviced) return;
     let frame = 0;
     let timeout = setInterval(() => {
       frame = (frame + 1 === loadingFrames.length) ? 0 : frame + 1;
@@ -36,14 +37,18 @@ const LoadingView = (props) => {
         friendlyMessage = "Your request has been accepted";
         break;
       case LaunchStatusType.Queued:
-        friendlyMessage = "You've entered the queue ";
+        friendlyMessage = "You've entered the queue";
         break;
       case LaunchStatusType.Ready:
-        friendlyMessage = "Your session is starting soon, get ready.";
+        friendlyMessage = "Your session is starting soon, get ready";
+        break;
+      case 'requested':
+        friendlyMessage = "Your session is starting soon, get ready";
         break;
       case LaunchStatusType.Serviced:
       default: 
         friendlyMessage = "";
+        break;
     }
 
     let content;
@@ -70,7 +75,7 @@ const LoadingView = (props) => {
               <h1>We're loading your Infinite Playa experience. Please explore the world map while you wait.</h1>
               <h3>{friendlyMessage}{frame}</h3>
               { 
-                props.LaunchRequestStatus.status === LaunchStatusType.Serviced || props.LaunchRequestStatus.status === LaunchStatusType.Ready ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
+                props.LaunchRequestStatus.status === LaunchStatusType.Serviced ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
               }
             </div>
           </div>
