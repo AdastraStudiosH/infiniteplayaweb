@@ -79,7 +79,7 @@ const Streamer = () => {
 
     
     if(LOCAL_DEV) {
-      setModelDefinition(new LocalModelDefinition(`ws://localhost`));
+      setModelDefinition(new LocalModelDefinition(`ws://192.168.1.64`, true));
     } else {
     const credentials = new PlatformCredentials();
     const res = await API.get("PureWebCredentialsAPI", "/credentials", {});
@@ -97,18 +97,19 @@ const Streamer = () => {
   useEffect(() => {
     if (messageSubject == null) return;
     const subscription = messageSubject.subscribe(
-      (message) => {
-        console.log(message);
+      (messageString) => {
+        console.log(messageString);
         try {
-          let msg = JSON.parse(message);
+          let msg = JSON.parse(messageString);
           let {type} = msg;
-          if(type === 'ready') {
+          if(type === 'ready' ) {
             (async () => {let currentSession = await Auth.currentSession();
               let id_token = currentSession.getIdToken().getJwtToken();
               let access_token = currentSession.getAccessToken().getJwtToken();
               let refresh_token = currentSession.getRefreshToken().getToken();
-              emitter.EmitUIInteraction({id_token, access_token, refresh_token});
-              log.info("Sending credentials to game.");
+              let mobile = isMobile;
+              emitter.EmitUIInteraction({id_token, access_token, refresh_token, mobile});
+              log.info(`Sending credentials to game.`);
               })();
           }
         } catch (err) {
