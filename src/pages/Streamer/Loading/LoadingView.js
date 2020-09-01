@@ -70,7 +70,7 @@ const LoadingView = (props) => {
               <h1>We're loading your Infinite Playa experience. Please explore the world map while you wait.</h1>
               <h3>{friendlyMessage}{frame}</h3>
               { 
-                props.LaunchRequestStatus.status === LaunchStatusType.Serviced ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
+                props.LaunchRequestStatus.status === LaunchStatusType.Serviced || props.LaunchRequestStatus.status === LaunchStatusType.Ready ? <button onClick={() => {setIsHidden(true)}}>Ready</button> : <p/>
               }
             </div>
           </div>

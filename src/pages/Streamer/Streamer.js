@@ -69,17 +69,6 @@ const Streamer = () => {
     });
   }, [launchRequest]);
 
-  // Send Cognito details to game
-  useAsyncEffect(async () => {
-    if(streamerStatus === StreamerStatus.Streaming) {
-      let currentSession = await Auth.currentSession();
-      let id_token = currentSession.getIdToken().getJwtToken();
-      let access_token = currentSession.getAccessToken().getJwtToken();
-      let refresh_token = currentSession.getRefreshToken().getToken();
-      emitter.EmitUIInteraction({id_token, access_token, refresh_token});
-      log.info("Sending credentials to game.");
-    }
-  },[streamerStatus]);
 
   let params = new URLSearchParams(window.location.search);
   console.log(params.has('local_development'));
@@ -102,6 +91,35 @@ const Streamer = () => {
     setModelDefinition(models[0]);
     }
   }, []);
+
+
+  // Monitor Launch Request Status
+  useEffect(() => {
+    if (messageSubject == null) return;
+    const subscription = messageSubject.subscribe(
+      (message) => {
+        console.log(message);
+        try {
+          let msg = JSON.parse(message);
+          let {type} = msg;
+          if(type === 'ready') {
+            (async () => {let currentSession = await Auth.currentSession();
+              let id_token = currentSession.getIdToken().getJwtToken();
+              let access_token = currentSession.getAccessToken().getJwtToken();
+              let refresh_token = currentSession.getRefreshToken().getToken();
+              emitter.EmitUIInteraction({id_token, access_token, refresh_token});
+              log.info("Sending credentials to game.");
+              })();
+          }
+        } catch (err) {
+          log.error(err);
+        }
+      }
+    );
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [emitter, messageSubject]);
 
   // Monitor Launch Request Status
   useEffect(() => {
@@ -129,6 +147,7 @@ const Streamer = () => {
     return () => {
       subscription.unsubscribe();
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [launchRequest]);
 
   // Execute launch on user action
