@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Parallax, ParallaxLayer } from 'react-spring/renderprops-addons';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import first from '../../images/first_back.png';
