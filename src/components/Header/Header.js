@@ -49,7 +49,7 @@ const Header = (props) => {
   return (
     <header className="header">
       {/* <Link className="logo" to="/"><img src={logo} alt="logo" /></Link> */}
-      <h2>DMCA Take Down</h2>
+      <a href="https://www.infiniteplaya.com/dmcatakedown" target="_blanc"><h2>DMCA Take Down</h2></a>
       {/* <div onClick={() => setOpen(!isOpen)} className={isOpen ? 'hamburger open' : "hamburger"}>
         <span></span>
         <span></span>

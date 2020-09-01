@@ -144,8 +144,14 @@ const Login = (props) => {
             <div className="age-verification">
               <span>Is your Age under 13 years?</span>
               <div>
-                <button onClick={() => toggleSetStep(1)} error={props.setSignUpError("You must be over 13 years old to participate in the InfinitePlaya.")}>Yes</button>
-                <button onClick={() => toggleSetStep(3)}>No</button>
+                <button onClick={() => {
+                  props.setSignUpError("You must be over 13 years old to participate in the InfinitePlaya.");
+                  toggleSetStep(1);
+                }}>Yes</button>
+                <button onClick={() => {
+                  props.setSignUpError(undefined);
+                  toggleSetStep(3)
+                }}>No</button>
               </div>
             </div>
           </React.Fragment>

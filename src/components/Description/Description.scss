@@ -150,8 +150,9 @@
     }
 
     p {
-      font-size: 20px;
+      font-size: 1.5em;
       letter-spacing: 0.05em;
+      margin-top: -8px
     }
 
     span {
@@ -162,6 +163,24 @@
 
     svg {
       display: none;
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .description {
+
+    .description-buttons {
+      flex-direction: column;
+
+      div {
+        width: 100%;
+        margin-bottom: 4em;
+
+        span {
+          font-size: 2em;
+        }
+      }
     }
   }
 }
