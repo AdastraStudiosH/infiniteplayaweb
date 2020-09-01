@@ -104,9 +104,11 @@ const Workspace = (props) => {
         }
 
         <h2 className="workspace-title">Purchases</h2>
-        <div className="workspace-block">
-          <h2>Downloadable Game:</h2>
-          <p>If you have a current gaming PC (gtx 1080 or better) you can purchase our downloadable executable file for $100 for unlimited play all week long. </p>
+        <div className="donate">
+          <h3>Make an additional donation to the Burning Man Project</h3>
+          <div>
+            <a href="https://donate.burningman.org/?utm_source=infinite-playa&utm_medium=donate&utm_campaign=multiverse" target="_blank"></a>
+          </div>
         </div>
         <div className="workspace-block">
           <h2>Pay as you go:</h2>
@@ -120,7 +122,7 @@ const Workspace = (props) => {
           <div>
             <span>Weekend Warrior	</span>
             <span>Five Hour Pass - $40	</span>
-          </div>
+            </div>
           <div>
             <span>Dusty Explorer	</span>
             <span>Ten Hour Pass - $75	</span>
@@ -128,38 +130,47 @@ const Workspace = (props) => {
           <div>
             <span>Founder's Package</span>
             <span>24 Hour  Pass - $150 *includes executable</span>
-          </div>
-        </div> */}
-        <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
+            </div>
+          </div> */}
         <div id="purchase" className="purchases">
-          <div>
+          <div className="purchase-item">
             <h3>Visitor</h3>
-            <span>Two Hour Pass - $20</span>
-            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Buy</button>
+            <span className="purchase-amount">$20</span>
+            <span>Two Hour Pass</span>
+            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Select</button>
           </div>
-          <div>
+          <div className="purchase-item">
             <h3>Weekend Warrior</h3>
-            <span>Five Hour Pass - $40</span>
-            <button onClick={() => paymentFunc('price_1HLcEeHyf8bGDaR7iRgrcipv')}>Buy</button>
+            <span className="purchase-amount">$40</span>
+            <span>Five Hour Pass</span>
+            <button onClick={() => paymentFunc('price_1HLcEeHyf8bGDaR7iRgrcipv')}>Select</button>
           </div>
-          <div>
+          <div className="purchase-item">
             <h3>Dusty Explorer</h3>
-            <span>Ten Hour Pass - $75</span>
-            <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Buy</button>
+            <span className="purchase-amount">$75</span>
+            <span>Ten Hour Pass</span>
+            <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Select</button>
           </div>
-          <div>
-            <h3>Founder's Package</h3>
-            <span>24 Hour  Pass - $150 *includes executable</span>
-            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Buy</button>
+          <div className="purchase-item">
+            <h3>Founder's Package*</h3>
+            <span className="purchase-amount">$150</span>
+            <span>24 Hour Pass</span>
+            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
+            <span className="purchase-remark">*includes executable file</span>
           </div>
         </div>
-        <div className="donate">
-          <h3>Make an additional donation to the Burning Man Project</h3>
-          <div>
-            <a href="https://donate.burningman.org/?utm_source=infinite-playa&utm_medium=donate&utm_campaign=multiverse" target="_blank"></a>
+        <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
+        <div className="workspace-block">
+          <h2>Downloadable Game:</h2>
+          <p>If you have a current gaming PC (gtx 1080 or better) you can purchase our downloadable executable file for $100 for unlimited play all week long. </p>
+          <div className="purchase-item">
+            <h3>Downloadable Game File</h3>
+            <span>Play all week!</span>
+            <span>$100</span>
+            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
           </div>
-          <p>We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
         </div>
+        <p>We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
       </div>
       <Footer />
       {isPaymentLoading && <div className="payment-loading">Loading</div>}

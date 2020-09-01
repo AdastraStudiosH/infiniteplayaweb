@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './SignUp.scss';
+
 const SignUp = (props) => {
   const [isErrors, showErrors] = useState(false);
   const [errMessage, errorMessage] = useState(false);
@@ -29,10 +31,6 @@ const SignUp = (props) => {
         showErrors(true);
         errorMessage('Please enter a valid password.  Your password must be at least 8 characters, and include at least one number.');
         return false;
-      } else if (password !== repeatPassword) {
-        showErrors(true);
-        errorMessage('Please ensure that your password is the same in both password fields.');
-        return false;
       } else {
         showErrors(false);
         return true;    
@@ -40,64 +38,60 @@ const SignUp = (props) => {
   }
 
   return (
-    <React.Fragment>
-        <h2>Register</h2>
-        <input 
-          type="text" 
-          value={first_name}
-          autoComplete='undefined'
-          onChange={e => setFirstName(e.target.value)} 
-          placeholder="name" 
-        />
-        <input 
-          type="text" 
-          value={last_name}
-          autoComplete='undefined'
-          onChange={e => setLastName(e.target.value)} 
-          placeholder="last name" 
-        />
-        <input 
-          type="email"
-          autoComplete='undefined' 
-          value={email} 
-          onChange={e => setEmail(e.target.value)} 
-          placeholder="email" 
-        />
-        <input 
-          type="text" 
-          value={regUsername}
-          autoComplete="no"
-          onChange={e => setRegUsername(e.target.value)} 
-          placeholder="username (Playa Name)" 
-        />
-        <input 
-          type="password"
-          autoComplete='undefined'
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          placeholder="password" 
-        />
-        <input 
-          type="password" 
-          placeholder="repeat password"
-          value={repeatPassword}
-          onChange={e => setRepeatPassword(e.target.value)}
-        />
-        <span onClick={() => toggleSetStep(0)}>Back to Sign In</span>
-        <div className="login-checkbox">
+    <div className="signup-wrapper">
+        <h2>Create An Account</h2>
+        <span onClick={() => toggleSetStep(0)}>Already have an account? Sign-In</span>
+        <div className="signup-name">
+          <div className="signup-input">
+            <label>First Name: *</label>
+            <input 
+              type="text" 
+              value={first_name}
+              onChange={e => setFirstName(e.target.value)}
+            />
+          </div>
+          <div className="signup-input">
+            <label>Last Name: *</label>
+            <input 
+              type="text" 
+              value={last_name}
+              onChange={e => setLastName(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="signup-input">
+          <label>Email: *</label>
+          <input 
+            type="email"
+            value={email} 
+            onChange={e => setEmail(e.target.value)}
+          />
+        </div>
+        <div className="signup-input">
+          <label>Playa (User) Name</label>
+          <input 
+            type="text" 
+            value={regUsername}
+            onChange={e => setRegUsername(e.target.value)} 
+          />
+        </div>
+        <div className="signup-input">
+          <label>PW</label>
+          <input 
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+        </div>
+        {/* <div className="login-checkbox">
           <input type="checkbox" />
           <span>Opt in to share your information with Burning Man.</span>
-        </div>
-        {error && <div className="errors">{error}</div>}
-        {isErrors && <div className="errors">{errMessage}</div>}
-        <button onClick={() => {
-          if (validateFields()){
-            toggleSetStep(2);
-          } else{
-            signUp();
-          }          
-        }}>Sign Up</button>
-      </React.Fragment>
+        </div> */}
+        {error && <div id="errors">{error}</div>}
+        {isErrors && <div id="errors">{errMessage}</div>}
+        <button onClick={() => validateFields() && toggleSetStep(2)
+        }>Submit</button>
+      </div>
     )
 }
 
