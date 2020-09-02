@@ -12,8 +12,33 @@ import { setIsLogin } from '../../redux/auth/auth.reducer';
 import './Description.scss';
 
 const Description = (props) => {
+ 
+  const [deploymentStatus, setDeploymentStatus] = useState('available'); 
 
-  console.log(props.isSignOut);
+  const fetchDeploymentStatus = async () => {
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+
+    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/deploymentstatus')
+    .then(res => res.json())
+    .then(data => { 
+        if (data.body){
+          var status=JSON.parse(data.body);          
+          if (status.status){
+            setDeploymentStatus(status.status);            
+          }
+        }
+      }
+      )
+    .catch(err => {      
+      console.log.error(err);
+    })
+  }
+
+  useEffect(() => {
+    fetchDeploymentStatus();    
+  }, [])
 
   return (
     <div className="description">
@@ -22,6 +47,15 @@ const Description = (props) => {
       <p>Welcome Home</p>
       <div className="description-buttons">       
         <div>
+        { deploymentStatus==='prelaunch' && (
+          <Link 
+            onClick={() => {
+              props.isSignOut && props.setIsLogin(!props.isLogin)
+            }} to={props.isSignOut ? '#' : "/workspace"}>
+            <img src={exp_button} />
+            <span>Interactive Paid Experience</span>
+          </Link>
+        )} { deploymentStatus!=='prelaunch' && (
           <Link 
             onClick={() => {
               props.isSignOut && props.setIsLogin(!props.isLogin)
@@ -29,6 +63,8 @@ const Description = (props) => {
             <img src={exp_button} />
             <span>Interactive Paid Experience</span>
           </Link>
+        )} 
+          
         </div>
       </div>
 

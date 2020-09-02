@@ -142,7 +142,7 @@ const Workspace = (props) => {
         { deploymentStatus==='locked' && (
                   <div className="locked">
                     While we work to ensure the best possible experience for you, we have temporarily stopped the purchase of game time. <br/><br/>
-                    If you have already purchased game time in the Playa, feel free to use it.  We'll be re-launching purchases shortly.  Stay tuned.
+                    If you have already purchased game time in the Playa, feel free to use it.  We'll be re-launching purchases shortly.  Stay tuned.<br/><br/>
                   </div>
                 )
     } { (deploymentStatus==='available' || deploymentStatus==='prelaunch' )&& (
