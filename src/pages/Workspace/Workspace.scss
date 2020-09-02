@@ -170,10 +170,15 @@
       .purchase-remark {
         position: absolute;
         bottom: 15px;
-        color: #678670;
-        font-size: 0.6em;
         margin: 0 auto;
-        font-weight: bold;
+        text-decoration: none;
+        cursor: pointer;
+        
+        span {
+          font-weight: bold;
+          font-size: 0.6em;
+          color: #678670;
+        }
       }
 
       .purchase-amount {
@@ -255,7 +260,7 @@
         flex-direction: column;
 
         button {
-          width: 100%;
+          width: 440px;
           margin-left: 0 !important;
         }
       }
@@ -290,6 +295,21 @@
       p {
         width: 100% !important;
         text-align: center !important;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .workspace {
+    &-wrapper {
+
+      .workspace-button {
+
+        button {
+          width: 100%;
+          font-size: 1.5em;
+        }
       }
     }
   }

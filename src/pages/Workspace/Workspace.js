@@ -139,26 +139,29 @@ const Workspace = (props) => {
             <h3>Visitor</h3>
             <span className="purchase-amount">$20</span>
             <span>Two Hour Pass</span>
-            <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Select</button>
+            <button onClick={() => paymentFunc('price_1HLfpUHyf8bGDaR7VcuqATLR')}>Select</button>
           </div>
           <div className="purchase-item">
             <h3>Weekend Warrior</h3>
             <span className="purchase-amount">$40</span>
             <span>Five Hour Pass</span>
-            <button onClick={() => paymentFunc('price_1HLcEeHyf8bGDaR7iRgrcipv')}>Select</button>
+            <button onClick={() => paymentFunc('price_1HLE6iLSQ0UOTq7wVOsoU30M')}>Select</button>
           </div>
           <div className="purchase-item">
             <h3>Dusty Explorer</h3>
             <span className="purchase-amount">$75</span>
             <span>Ten Hour Pass</span>
-            <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Select</button>
+            <button onClick={() => paymentFunc('price_1HLE74LSQ0UOTq7wxHqkfNUZ')}>Select</button>
           </div>
           <div className="purchase-item">
             <h3>Founder's Package*</h3>
             <span className="purchase-amount">$150</span>
             <span>24 Hour Pass</span>
-            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
-            <span className="purchase-remark">*includes executable file</span>
+            <button onClick={() => paymentFunc('price_1HLE7QLSQ0UOTq7w2uS5OOuy')}>Select</button>
+            <a 
+              href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view"
+              className="purchase-remark"
+            ><span>*includes executable file</span></a>
           </div>
         </div>
         <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in.</p> 
@@ -170,13 +173,17 @@ const Workspace = (props) => {
             <h3>Downloadable Game File</h3>
             <span>Play all week!</span>
             <span>$100</span>
-            <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
+            <button onClick={() => paymentFunc('price_1HMuNwLSQ0UOTq7wKKiAIAkM')}>Select</button>
+            <a 
+              className="purchase-remark" 
+              href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view"
+            ><span>*includes executable file</span></a>
           </div>
         </div>
         <p className="desc">We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
       </div>
       <Footer />
-      {isPaymentLoading && <div className="payment-loading">Loading</div>}
+      {isPaymentLoading && <div className="payment-loading">{''}</div>}
     </section>
   )
 }
