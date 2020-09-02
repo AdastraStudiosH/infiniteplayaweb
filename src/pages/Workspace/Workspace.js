@@ -49,13 +49,18 @@ const Workspace = (props) => {
           'AccessToken': localStorage.token, 
           'price': price 
         })
-      }).catch(() => toggleLoadPayment(false));
+      })
+      .then(res => res.json())
+      .then(data => data.errorType && toggleLoadPayment(false))
+      .catch(() => toggleLoadPayment(false));
 
     const session = await response.json();
 
     const result = await stripe.redirectToCheckout({
       sessionId: session.sessionId
-    })
+    }).then().catch(err => console.log(err))
+
+    console.log(result);
   }
   let playTimeRemaining = props.user && props.user.playerData.PlayTime > 0;
   
@@ -84,7 +89,8 @@ const Workspace = (props) => {
             </div>
             <div>
               <span>Time</span>
-              <span>{props.user && `${Math.floor(props.user.playerData.PlayTime%3600/60)} min`}</span>
+              {console.log(props.user)}
+              <span>{props.user && `${Math.floor(props.user.playerData.PlayTime)} min`}</span>
             </div>
           </div>
         </div>
@@ -92,7 +98,7 @@ const Workspace = (props) => {
             playTimeRemaining && (
                <div className="workspace-button">
                 <Link to="/streamer"><button>Start a streaming experience</button> </Link>
-                <a href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view">
+                <a href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}>
                   <button>Download Game client</button>
                 </a>
                 </div>
@@ -159,7 +165,7 @@ const Workspace = (props) => {
             <span>24 Hour Pass</span>
             <button onClick={() => paymentFunc('price_1HLE7QLSQ0UOTq7w2uS5OOuy')}>Select</button>
             <a 
-              href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view"
+              href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}
               className="purchase-remark"
             ><span>*includes executable file</span></a>
           </div>
@@ -176,7 +182,7 @@ const Workspace = (props) => {
             <button onClick={() => paymentFunc('price_1HMuNwLSQ0UOTq7wKKiAIAkM')}>Select</button>
             <a 
               className="purchase-remark" 
-              href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view"
+              href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}
             ><span>*includes executable file</span></a>
           </div>
         </div>
