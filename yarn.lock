@@ -2628,7 +2628,7 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
-"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.3.1", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4":
+"@babel/runtime@^7.1.2", "@babel/runtime@^7.10.2", "@babel/runtime@^7.10.3", "@babel/runtime@^7.5.1", "@babel/runtime@^7.5.5", "@babel/runtime@^7.8.4":
   version "7.11.2"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
   integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
@@ -2701,9 +2701,9 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@calgaryscientific/platform-sdk-react@./lib/calgaryscientific-platform-sdk-react-v1.4.7.tgz":
-  version "1.4.7"
-  resolved "./lib/calgaryscientific-platform-sdk-react-v1.4.7.tgz#7b7004d94042870552b01be02f8232e08f79603f"
+"@calgaryscientific/platform-sdk-react@./lib/calgaryscientific-platform-sdk-react-v1.4.9.tgz":
+  version "1.4.9"
+  resolved "./lib/calgaryscientific-platform-sdk-react-v1.4.9.tgz#5a9f9997145618ef64f47d1ba063da43ec34a704"
   dependencies:
     "@juggle/resize-observer" "^3.1.3"
     detect-browser "^5.1.0"
@@ -2711,9 +2711,9 @@
     react-idle-timer "^4.3.4"
     react-modal "^3.11.2"
 
-"@calgaryscientific/platform-sdk@./lib/calgaryscientific-platform-sdk-v1.4.7.tgz":
-  version "1.4.7"
-  resolved "./lib/calgaryscientific-platform-sdk-v1.4.7.tgz#cdc60c0a1e7ca6c5df54ad2819cb8973cfd8df7e"
+"@calgaryscientific/platform-sdk@./lib/calgaryscientific-platform-sdk-v1.4.9.tgz":
+  version "1.4.9"
+  resolved "./lib/calgaryscientific-platform-sdk-v1.4.9.tgz#46cb47c13f1e82f5f75755edf507f8408a50d18c"
   dependencies:
     "@datadog/browser-logs" "^1.12.3"
     "@types/aws-iot-device-sdk" "^2.2.1"
@@ -13686,14 +13686,6 @@ react-scripts@3.4.3:
     workbox-webpack-plugin "4.3.1"
   optionalDependencies:
     fsevents "2.1.2"
-
-react-spring@^8.0.27:
-  version "8.0.27"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-8.0.27.tgz#97d4dee677f41e0b2adcb696f3839680a3aa356a"
-  integrity sha512-nDpWBe3ZVezukNRandTeLSPcwwTMjNVu1IDq9qA/AMiUqHuRN4BeSWvKr3eIxxg1vtiYiOLy4FqdfCP5IoP77g==
-  dependencies:
-    "@babel/runtime" "^7.3.1"
-    prop-types "^15.5.8"
 
 react-swipeable@^5.2.0:
   version "5.5.1"
