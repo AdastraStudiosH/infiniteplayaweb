@@ -69,35 +69,20 @@ const Workspace = (props) => {
       <Header />
       <div className="workspace-wrapper">
         <div className="account">
-          <h2 className="workspace-title">Account Info</h2>
+          <h2 className="workspace-title">Hi {props.user && props.user.userAttributes.nickname}, welcome to the Infinite Playa! </h2>
           <div className="account-info">
-            <div>
-              <span>First Name</span>
-              <span>{props.user && props.user.userAttributes.name}</span>
+            <div>                        
+              You current have {props.user && `${Math.floor(props.user.playerData.PlayTime)} `} minutes of play time in the Infinite Playa.<br/>
+              You can purchase more time below.                           
             </div>
             <div>
-              <span>Last Name</span>
-              <span>{props.user && props.user.userAttributes.family_name}</span>
-            </div>
-            <div>
-              <span>Email</span>
-              <span>{props.user && props.user.userAttributes.email}</span>
-            </div>
-            <div>
-              <span>Username (Playa Name)</span>
-              <span>{props.user && props.user.userAttributes.nickname}</span>
-            </div>
-            <div>
-              <span>Time</span>
-              {console.log(props.user)}
-              <span>{props.user && `${Math.floor(props.user.playerData.PlayTime)} min`}</span>
             </div>
           </div>
         </div>
         {
             playTimeRemaining && (
                <div className="workspace-button">
-                <Link to="/streamer"><button>Start a streaming experience</button> </Link>
+                <Link to="/streamer"><button>Start playing now</button> </Link>
                 <a href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}>
                   <button>Download Game client</button>
                 </a>

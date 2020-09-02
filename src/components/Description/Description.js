@@ -20,17 +20,7 @@ const Description = (props) => {
       <img src={title} alt="title" />
       {/* <p>go "home" at home</p> */}
       <p>Welcome Home</p>
-      <div className="description-buttons">
-        <div>
-          <a 
-            onClick={() => {
-              props.isSignOut && props.setIsLogin(!props.isLogin)
-            }} 
-            href="https://watch.infiniteplaya.com/">
-            <img src={watch_button} />
-            <span>Free Live Streaming Content</span>
-          </a>
-        </div>
+      <div className="description-buttons">       
         <div>
           <Link 
             onClick={() => {

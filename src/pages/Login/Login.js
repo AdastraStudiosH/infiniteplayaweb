@@ -166,9 +166,7 @@ const Login = (props) => {
                 <p>To complete registration, confirm your email</p>
               </div>
             </React.Fragment> 
-          ) :  ( <div>
-            <h2>WHAT HAVE YOU DONE?</h2>
-            <p>Look at the horrors you have wrought with your choices!</p>
+          ) :  ( <div>            
           </div>)         
       }
       </section>

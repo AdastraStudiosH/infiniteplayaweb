@@ -26,29 +26,17 @@
   }
 
   .description-buttons {
-    display: flex;
-    width: 100%;
+    display: flex;    
     justify-content: space-between;
+    margin:auto;
+    width: 50%;
 
     div {
       display: flex;
       flex-direction: column;
-      width: 400px;
-
+            
       a {
         text-decoration: none;
-      }
-
-      &:first-child {
-        span {
-          &::before {
-            content: 'Free Live Streaming Content';
-          }
-
-          &::after {
-            content: 'Free Live Streaming Content';
-          }
-        }
       }
 
       &:last-child {
