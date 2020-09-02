@@ -142,7 +142,7 @@ const Login = (props) => {
         ) : step === 2 ? (
           <React.Fragment>
             <div className="age-verification">
-              <span>Is your Age under 13 years?</span>
+              <span>Are you under 13 years of age?</span>
               <div>
                 <button onClick={() => {
                   props.setSignUpError("You must be over 13 years old to participate in the InfinitePlaya.");
@@ -162,8 +162,8 @@ const Login = (props) => {
             (
             <React.Fragment>
               <div>
-                <h2>Registration is succesful</h2>
-                <p>To finish the Registration, please, confirm your email</p>
+                <h2>Registration Succesful!</h2>
+                <p>To complete registration, confirm your email</p>
               </div>
             </React.Fragment> 
           ) :  ( <div>

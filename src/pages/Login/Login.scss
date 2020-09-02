@@ -10,7 +10,7 @@
 
 .login {
   position: fixed;
-  top: 140px;
+  top: 50px;
   left: 10vw;
   width: 80vw;
   background-color: #000;
@@ -20,7 +20,7 @@
   align-items: center;
   padding: 2em 0;
   z-index: 1000;
-  max-height: calc(100vh - 280px);
+  max-height: calc(100vh - 160px);
 
   .inner-content {
     display: flex;

@@ -56,7 +56,10 @@ const App = (props) => {
       method: 'POST',
       body: JSON.stringify({ 'AccessToken': localStorage.token })
     }).then(res => res.json())
-    .then(data => props.setUserData(data))
+    .then(data => {
+      props.setUserData(data)
+      props.setSignOut(false);
+    })
     .catch(async (err) => {
       props.setAuthData(undefined);
       localStorage.nickname = undefined;

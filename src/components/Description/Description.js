@@ -26,7 +26,7 @@ const Description = (props) => {
             onClick={() => {
               props.isSignOut && props.setIsLogin(!props.isLogin)
             }} 
-            href={props.isSignOut ? '#' : "https://watch.infiniteplaya.com/"}>
+            href="https://watch.infiniteplaya.com/">
             <img src={watch_button} />
             <span>Free Live Streaming Content</span>
           </a>
@@ -42,7 +42,7 @@ const Description = (props) => {
         </div>
       </div>
 
-      <button>About The Infinite</button>
+      <a href="https://www.infiniteplaya.com/" target="_blanc"><button>About The Infinite</button></a>
       
       {/* <span>This year, for the first time in its history, Burning Man canceled in the face of the COVID-19 crisis</span>
       <span>Without the Burn where do we go to be inspired, to be free, to turn ourwildest dreams into reality and to celebrate the joy of profound human connection?</span>

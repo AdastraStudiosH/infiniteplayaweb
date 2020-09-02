@@ -43,10 +43,10 @@ const FirstPage = () => {
         </section> */}
       </section>
       <section className="background-second">
-        <VideoComp />
+        {/* <VideoComp />
         <div className="fromVideoToGallery"></div>
         <Gallery />
-        <BecomeInfinite />
+        <BecomeInfinite /> */}
         <Footer />
       </section>
     </main>

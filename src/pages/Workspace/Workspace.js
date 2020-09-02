@@ -84,7 +84,7 @@ const Workspace = (props) => {
             </div>
             <div>
               <span>Time</span>
-              <span>{props.user && props.user.playerData.PlayTime}</span>
+              <span>{props.user && `${Math.floor(props.user.playerData.PlayTime%3600/60)} min`}</span>
             </div>
           </div>
         </div>
@@ -92,7 +92,9 @@ const Workspace = (props) => {
             playTimeRemaining && (
                <div className="workspace-button">
                 <Link to="/streamer"><button>Start a streaming experience</button> </Link>
-                <button>Download Game client</button>
+                <a href="https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view">
+                  <button>Download Game client</button>
+                </a>
                 </div>
             )
 }{
@@ -105,14 +107,14 @@ const Workspace = (props) => {
 
         <h2 className="workspace-title">Purchases</h2>
         <div className="donate">
-          <h3>Make an additional donation to the Burning Man Project</h3>
+          <p>Make an additional donation to the Burning Man Project</p>
           <div>
             <a href="https://donate.burningman.org/?utm_source=infinite-playa&utm_medium=donate&utm_campaign=multiverse" target="_blank"></a>
           </div>
         </div>
         <div className="workspace-block">
           <h2>Pay as you go:</h2>
-          <p>For the full interactive gaming experience streamed directly into your Safari or Chrome browser purchase one of our hourly passes.*</p>
+          <p>For the interactive gaming experience, streamed directly into your Safari or Chrome, browser purchase one of our hourly passes.*</p>
         </div>
         {/* <div className="workspace-prices">
           <div>
@@ -159,10 +161,11 @@ const Workspace = (props) => {
             <span className="purchase-remark">*includes executable file</span>
           </div>
         </div>
-        <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in. Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
+        <p className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in.</p> 
+        <p className="remark remark-second">Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</p>
         <div className="workspace-block">
           <h2>Downloadable Game:</h2>
-          <p>If you have a current gaming PC (gtx 1080 or better) you can purchase our downloadable executable file for $100 for unlimited play all week long. </p>
+          <p className="reqs">If you have a current gaming PC (gtx 1080 or better) you can purchase our downloadable executable file for $100 for unlimited play all week long. </p>
           <div className="purchase-item">
             <h3>Downloadable Game File</h3>
             <span>Play all week!</span>
@@ -170,7 +173,7 @@ const Workspace = (props) => {
             <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
           </div>
         </div>
-        <p>We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
+        <p className="desc">We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
       </div>
       <Footer />
       {isPaymentLoading && <div className="payment-loading">Loading</div>}

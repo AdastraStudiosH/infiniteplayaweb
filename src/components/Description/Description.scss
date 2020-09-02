@@ -145,6 +145,10 @@
     padding: 0 2em;
     margin-top: 32px;
 
+    button {
+      margin-bottom: 40px;
+    }
+
     img {
       width: 100%;
     }
@@ -167,8 +171,9 @@
   }
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 900px) {
   .description {
+    height: max-content;
 
     .description-buttons {
       flex-direction: column;
