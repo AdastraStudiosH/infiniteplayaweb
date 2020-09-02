@@ -3,12 +3,6 @@ import title from '../../images/title.png';
 
 import "./LaunchView.scss";
 
-// const greeterVideos = ['https://youtu.be/M--OsMIduBo', 
-//                            'https://youtu.be/HGqP4rl5Z6A',
-//                            'https://youtu.be/-BJ-T1SULpo',
-//                            'https://youtu.be/KaYaujUGHXc',
-//                            'https://youtu.be/WCmngYiL2iM']
-
 const greeterVideos = ['https://d2yfukh5cx27cp.cloudfront.net/Intro_Helix.mp4',
                        'https://d2yfukh5cx27cp.cloudfront.net/Intro_DaleyDale.mp4',
                        'https://d2yfukh5cx27cp.cloudfront.net/Intro_FoxyFlambe.mp4',

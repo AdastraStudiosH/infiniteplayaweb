@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useRef} from "react";
 import { Redirect } from "react-router-dom";
 import { IdleTimeout, StreamerStatus, System, VideoStream } from "@calgaryscientific/platform-sdk-react";
 
@@ -7,7 +7,24 @@ import LoadingView from './Loading/LoadingView'
 import { LaunchStatusType } from "@calgaryscientific/platform-sdk";
 
 const MainView = (props) => {
-  
+  const videoRef = useRef();
+
+  // Use pointer lock
+  useEffect(() => {
+    const currentVideo = videoRef.current;
+    if (currentVideo == null) return;
+    if (props.StreamerStatus !== StreamerStatus.Streaming) return;
+
+    const handler = (e) => {
+      currentVideo.requestPointerLock();
+    };
+
+    currentVideo.addEventListener("click", handler);
+    return () => {
+      currentVideo.removeEventListener("click", handler);
+    };
+  });
+
   if (props.LaunchRequestStatus.status === LaunchStatusType.Error || props.LaunchRequestStatus.status === LaunchStatusType.Unavailable) {
     return <Redirect to={{
       pathname: "/error",
@@ -38,7 +55,7 @@ const MainView = (props) => {
         />
 
         <LoadingView LaunchRequestStatus={props.LaunchRequestStatus} StreamerStatus={props.StreamerStatus} />
-        <VideoStream Emitter={props.InputEmitter} Stream={props.VideoStream} UseNativeTouchEvents={props.UseNativeTouchEvents} />
+        <VideoStream VideoRef={videoRef} Emitter={props.InputEmitter} Stream={props.VideoStream} UseNativeTouchEvents={props.UseNativeTouchEvents} />
 
     </div>
   );
