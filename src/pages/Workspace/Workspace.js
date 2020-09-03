@@ -109,10 +109,13 @@ const Workspace = (props) => {
                   <div>We are currently in pre-launch sale of Playa game time.  To ensure the best possible experience for you while we roll out the Infinite Playa
                   we will be limiting the number of hours available for purchase. <br/><br/>
                   
-                  You can purchase play time in the Infinite Playa below.  <br/>
+                  You can purchase play time for the multi-player Infinite Playa experience below.  <br/>
                   Access to the Playa will be opening on Friday September 11th at 12:00 PM Pacific Time.<br/><br/>
+
+                  We will be making a single player version of the Playa freely available for download in the coming days.<br/><br/>
+
                   We can't wait to see you!  
-                  </div>                  
+                  </div>                                   
                 )
               }{
                 deploymentStatus==='available' && (
@@ -127,10 +130,7 @@ const Workspace = (props) => {
         {
             (deploymentStatus==='available' || deploymentStatus==='locked') && playTimeRemaining && (
                <div className="workspace-button">
-                <Link to="/streamer"><button>Start playing now</button> </Link>
-                <a href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}>
-                  <button>Download Game client</button>
-                </a>
+                <Link to="/streamer"><button>Start playing now</button> </Link>                
                 </div>
             )
         }{
@@ -157,9 +157,8 @@ const Workspace = (props) => {
                 )
     } { (deploymentStatus==='available' || deploymentStatus==='prelaunch' )&& (
             
-        <div className="workspace-block">
-          <h2>Pay as you go:</h2>
-          <p>For the interactive gaming experience, streamed directly into your Safari or Chrome, browser purchase one of our hourly passes.*</p><br/>
+        <div className="workspace-block">          
+          <p>For the multi-player gaming experience, streamed directly into your Safari or Chrome browser purchase one of our hourly passes.*</p><br/>
           <p>Please note that the browser based experience is optimized for users in North America.</p> 
           <div id="purchase" className="purchases">
             <div className="purchase-item">
@@ -181,35 +180,16 @@ const Workspace = (props) => {
               <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Select</button>
             </div>
             <div className="purchase-item">
-              <h3>Founder's Package*</h3>
+              <h3>Founder's Package</h3>
               <span className="purchase-amount">$150</span>
               <span>24 Hour Pass</span>
               <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
-              <a 
-                href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}
-                className="purchase-remark"
-              ><span>*includes executable file</span></a>
             </div>          
           </div>
           <div className="remark">*In game time will be clocked between login and logout. As long as you logout of the game whatever time you have remaining will be valid the next time you log in.</div> <br/>
           <div className="remark remark-second">Experience is optimized for keyboard and mouse input, touch devices experience some interactive limitations.</div>
         </div>
-       )}
-        <div className="workspace-block">
-          <h2>Downloadable Game:</h2>
-          <p className="reqs">If you have a current gaming PC (gtx 1080 or better) you can purchase our downloadable executable file for $100 for unlimited play all week long. </p>
-          <div className="purchase-item">
-            <h3>Downloadable Game File</h3>
-            <span>Play all week!</span>
-            <span>$100</span>
-            <button onClick={() => paymentFunc('price_1HN6kGHyf8bGDaR7xF8kjAPE')}>Select</button>
-            <a 
-              className="purchase-remark" 
-              href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}
-            ><span>*includes executable file</span></a>
-          </div>
-        </div>
-            
+       )}            
         <p className="desc">We want as many people as possible to experience the magic of The Infinite Playa! We have worked diligently to make it playable in web browsers and mobile devices, for those without high end computers. However, the technology that makes this possible comes with unavoidable per minute costs. For those that find the cost of the interactive experience prohibitive, please visit https://watch.infiniteplaya.com/ where you can view most of the performances, talks and art for free.</p>
       </div>
       <Footer />
