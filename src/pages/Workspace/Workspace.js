@@ -93,7 +93,7 @@ const Workspace = (props) => {
           <h2 className="workspace-title">Hi {props.user && props.user.userAttributes.nickname}, welcome to the Infinite Playa! </h2>
           <div className="account-info">
             <div>
-              You current have {props.user && `${Math.floor(props.user.playerData.PlayTime)} `} minutes of play time in the Infinite Playa.<br/><br/>
+              You currently have {props.user && `${Math.floor(props.user.playerData.PlayTime)} `} minutes of play time in the Infinite Playa.<br/><br/>
               {
                 deploymentStatus==='prelaunch' && (
                   <div>We are currently in pre-launch sale of Playa game time.  To ensure the best possible experience for you while we roll out the Infinite Playa
@@ -149,7 +149,8 @@ const Workspace = (props) => {
             
         <div className="workspace-block">
           <h2>Pay as you go:</h2>
-          <p>For the interactive gaming experience, streamed directly into your Safari or Chrome, browser purchase one of our hourly passes.*</p> 
+          <p>For the interactive gaming experience, streamed directly into your Safari or Chrome, browser purchase one of our hourly passes.*</p><br/>
+          <p>Please note that the browser based experience is optimized for users in North America.</p> 
           <div id="purchase" className="purchases">
             <div className="purchase-item">
               <h3>Visitor</h3>
