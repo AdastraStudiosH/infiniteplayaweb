@@ -103,7 +103,7 @@ const Workspace = (props) => {
           <h2 className="workspace-title">Hi {props.user && props.user.userAttributes.nickname}, welcome to the Infinite Playa! </h2>
           <div className="account-info">
             <div>
-              You currently have {props.user && `${(Math.floor(props.user.playerData.PlayTime) / 60).toFixed(0)} `} minutes of play time in the Infinite Playa.<br/><br/>
+              You currently have {props.user && `${(Math.floor(props.user.playerData.PlayTime)).toFixed(0)} `} minutes of play time in the Infinite Playa.<br/><br/>
               {
                 deploymentStatus==='prelaunch' && (
                   <div>We are currently in pre-launch sale of Playa game time.  To ensure the best possible experience for you while we roll out the Infinite Playa
