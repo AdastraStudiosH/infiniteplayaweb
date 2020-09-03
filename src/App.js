@@ -52,9 +52,9 @@ const App = (props) => {
 
   const fetchUserData = async () => {
 
-    await fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
+    fetch('https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/getuserdata', {
       method: 'POST',
-      body: JSON.stringify({ 'AccessToken': localStorage.token })
+      body: JSON.stringify({ 'AccessToken': props.token })
     }).then(res => res.json())
     .then(data => {
       props.setUserData(data)
@@ -70,9 +70,12 @@ const App = (props) => {
   }
 
 
+
   useEffect(() => {
-    fetchUserData();
-  }, [JSON.stringify(props.user), localStorage.token])
+    if (props.token !== undefined && props.token !== 'undefined') {
+      fetchUserData();
+    }
+  }, [props.token])
 
   return (
     <div className="App">
@@ -99,7 +102,8 @@ const App = (props) => {
 }
 
 const mapStateToProps = state => ({
-  user: state.user.user
+  user: state.user.user,
+  token: state.auth.token
 });
 
 const mapDispatchToProps = dispatch =>
