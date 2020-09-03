@@ -63,6 +63,10 @@ const Workspace = (props) => {
 
     toggleLoadPayment(true);
 
+    try
+    {
+
+    
     const response = await fetch(
       'https://qamxec6q0b.execute-api.eu-central-1.amazonaws.com/prod/paymentCreateCheckoutSession', 
       { 
@@ -71,18 +75,24 @@ const Workspace = (props) => {
           'AccessToken': localStorage.token, 
           'price': price 
         })
-      })
-      .then(res => res.json())
-      .then(data => data.errorType && toggleLoadPayment(false))
-      .catch(() => toggleLoadPayment(false));
+      });
 
-    const session = await response.json();
-
-    const result = await stripe.redirectToCheckout({
-      sessionId: session.sessionId
-    }).then().catch(err => console.log(err))
-  
-    console.log(result);
+      const session = await response.json();
+      if (session.errorType)
+        throw new Error("Failed to create Stripe session: " + session);
+        
+      const result = await stripe.redirectToCheckout({
+        sessionId: session.sessionId
+      });
+    
+      log.info("Stripe session created successfully: " + result);
+    }
+    catch(err) {
+      log.error(err);
+    }
+    finally {
+      toggleLoadPayment(false);
+    }
   }
   let playTimeRemaining = props.user && props.user.playerData.PlayTime > 0;    
   return (
@@ -156,25 +166,25 @@ const Workspace = (props) => {
               <h3>Visitor</h3>
               <span className="purchase-amount">$20</span>
               <span>Two Hour Pass</span>
-              <button onClick={() => paymentFunc('price_1HLfpUHyf8bGDaR7VcuqATLR')}>Select</button>
+              <button onClick={() => paymentFunc('price_1HLcFAHyf8bGDaR7gEVOAEK7')}>Select</button>
             </div>
             <div className="purchase-item">
               <h3>Weekend Warrior</h3>
               <span className="purchase-amount">$40</span>
               <span>Five Hour Pass</span>
-              <button onClick={() => paymentFunc('price_1HLE6iLSQ0UOTq7wVOsoU30M')}>Select</button>
+              <button onClick={() => paymentFunc('price_1HLcEeHyf8bGDaR7iRgrcipv')}>Select</button>
             </div>
             <div className="purchase-item">
               <h3>Dusty Explorer</h3>
               <span className="purchase-amount">$75</span>
               <span>Ten Hour Pass</span>
-              <button onClick={() => paymentFunc('price_1HLE74LSQ0UOTq7wxHqkfNUZ')}>Select</button>
+              <button onClick={() => paymentFunc('price_1HLcDtHyf8bGDaR7uBGq1sOM')}>Select</button>
             </div>
             <div className="purchase-item">
               <h3>Founder's Package*</h3>
               <span className="purchase-amount">$150</span>
               <span>24 Hour Pass</span>
-              <button onClick={() => paymentFunc('price_1HLE7QLSQ0UOTq7w2uS5OOuy')}>Select</button>
+              <button onClick={() => paymentFunc('price_1HLcD7Hyf8bGDaR7srl0sp9I')}>Select</button>
               <a 
                 href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}
                 className="purchase-remark"
@@ -192,7 +202,7 @@ const Workspace = (props) => {
             <h3>Downloadable Game File</h3>
             <span>Play all week!</span>
             <span>$100</span>
-            <button onClick={() => paymentFunc('price_1HMuNwLSQ0UOTq7wKKiAIAkM')}>Select</button>
+            <button onClick={() => paymentFunc('price_1HN6kGHyf8bGDaR7xF8kjAPE')}>Select</button>
             <a 
               className="purchase-remark" 
               href={props.user && props.user.playerData.AllowPCClient ? "https://drive.google.com/file/d/1TzWSWrMCF_q4R_0todXqMDUUM0ZIyVa3/view" : '#'}

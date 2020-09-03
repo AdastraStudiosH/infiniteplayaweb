@@ -6,10 +6,12 @@ import Footer from '../../components/Footer/Footer';
 
 const FailedPage = () => {
     return (
-        <div className="confirm-page">
+        <div className="failedPage confirm-page">
             <Header />
             <section>
-                Payment Failed
+                <p>
+                Your payment was cancelled or not completedly succcesfully. <a href="/workspace">Please try again.</a>
+                </p>
             </section>
             <Footer />
         </div>

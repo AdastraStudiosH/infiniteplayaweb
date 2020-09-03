@@ -1,18 +1,11 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import './ConfirmPage.scss';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 
 const ConfirmPage = () => {
     return (
-        <div className="confirm-page">
-            <Header />
-            <section>
-                Payment Succesfull
-            </section>
-            <Footer />
-        </div>
+        <Redirect to="/workspace"/>
     )
 }
 
