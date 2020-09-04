@@ -41,7 +41,6 @@ body {
 
 #root {
   height: 100%;
-  overflow:hidden;
 }
 
 code {
@@ -55,6 +54,10 @@ button, input {
 
 button, input[type="checkbox"] {
   cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 0;
 }
 
 #errors {
