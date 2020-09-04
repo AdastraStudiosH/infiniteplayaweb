@@ -199,6 +199,7 @@ const Streamer = () => {
       SignallingConnection={signallingConnection}
       InputEmitter={emitter}
       UseNativeTouchEvents={true}
+      Audio={audio}
     />
   ) : (
     <LaunchView Launch={launch} Ready={modelDefinition !== null}/>
