@@ -110,7 +110,7 @@ const Workspace = (props) => {
                   we will be limiting the number of hours available for purchase. <br/><br/>
                   
                   You can purchase play time for the multi-player Infinite Playa experience below.  <br/>
-                  Access to the Playa will be opening on Friday September 11th at 12:00 PM Pacific Time.<br/><br/>
+                  Access to the Playa will be available as soon as we have prepared a high quality experience for you. <br/><br/>
 
                   We will also be providing a free single player downloadable executable file with unlimited access to the interactive experience*.<br/><br/>
 
