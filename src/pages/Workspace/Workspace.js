@@ -120,7 +120,8 @@ const Workspace = (props) => {
               }{
                 deploymentStatus==='available' && (
                   <div>                                        
-                    You can purchase more time below. <br/>
+                    You can purchase more time below. <br/><br/>
+                    We will also be providing a free single player downloadable executable file with unlimited access to the interactive experience*.<br/><br/>
                   </div>
                 )
               }                          
