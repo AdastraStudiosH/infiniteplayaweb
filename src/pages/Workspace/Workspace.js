@@ -112,7 +112,7 @@ const Workspace = (props) => {
                   You can purchase play time for the multi-player Infinite Playa experience below.  <br/>
                   Access to the Playa will be opening on Friday September 11th at 12:00 PM Pacific Time.<br/><br/>
 
-                  We will be making a single player version of the Playa freely available for download in the coming days.<br/><br/>
+                  We will also be providing a free single player downloadable executable file with unlimited access to the interactive experience*.<br/><br/>
 
                   We can't wait to see you!  
                   </div>                                   
@@ -158,7 +158,8 @@ const Workspace = (props) => {
     } { (deploymentStatus==='available' || deploymentStatus==='prelaunch' )&& (
             
         <div className="workspace-block">          
-          <p>For the multi-player gaming experience, streamed directly into your Safari or Chrome browser purchase one of our hourly passes.*</p><br/>
+          <p>*For the single-player downloadable experience, you will need a Windows gaming PC with a GTX 1080 or better (Sorry, no MacOS version just yet).</p><br/>
+          <p>For the multi-player gaming experience, streamed directly into your Safari or Chrome browser purchase one of our hourly passes.</p><br/>
           <p>Please note that the browser based experience is optimized for users in North America.</p> 
           <div id="purchase" className="purchases">
             <div className="purchase-item">
