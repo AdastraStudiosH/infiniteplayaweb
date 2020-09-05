@@ -14,6 +14,31 @@
     
 }
 
+.move {
+    position: absolute;
+    z-index:100;
+    bottom:2%;
+    left:2%;        
+    width:10%;
+}
+
+.look {
+    position: absolute;
+    z-index:100;
+    bottom:2%;
+    right:2%;
+    width:10%;        
+}
+
+.jump {
+    position: absolute;
+    z-index:100;
+    bottom:2%;    
+    width:10%; 
+    left:50%;
+    transform:translate(-50%, 0);       
+}
+
 .escapeHint {
     position: absolute;
     z-index:100;

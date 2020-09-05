@@ -2,7 +2,9 @@ import React, {useEffect, useRef, useState} from "react";
 import { Redirect } from "react-router-dom";
 import { IdleTimeout, StreamerStatus, VideoStream } from "@calgaryscientific/platform-sdk-react";
 import Slider from 'react-rangeslider'
-
+import moveImg from '../../images/Move.png'
+import lookImg from '../../images/Look.png'
+import jumpImg from '../../images/Jump.png'
 import LoadingView from './Loading/LoadingView'
 import { LaunchStatusType } from "@calgaryscientific/platform-sdk";
 
@@ -95,7 +97,8 @@ const MainView = (props) => {
                   <div className="escapeHint" style={{visibility: isPointerLocked ? 'visible' : 'hidden'}}>
                     <p>Press [Esc] for mouse</p>
                   </div>
-
+                  
+                  <img className="jump" src={jumpImg} style={{visibility: isPointerLocked ? 'hidden': 'visible'}}/>
                   <div className="volumeControl">
                     <span role="img" aria-label="unmute">{speakerIcon}</span>
                     <Slider
@@ -104,6 +107,8 @@ const MainView = (props) => {
                       onChange={volumeChange}
                     />
                   </div>
+                  <img className="move" src={moveImg}/>
+                  <img className="look" src={lookImg}/>
 
                   <div className="logout">
                     <button><a href="/workspace">Logout</a></button>
